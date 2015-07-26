@@ -1,0 +1,15 @@
+git push origin "BRANCHNAME"
+git pull origin "BRANCHNAME"
+git add "DATEINAME"  //prepare file for upload [-p for parts of file]
+git commit -m "MESSAGE" //create commit message
+
+Branching
+git checkout -b "NAME" //create branch
+git checkout "NAME" // switch to branch
+git branch -d "NAME" //deletes branch
+git merge "branch" //merges branch with "open" branch
+git diff "source branch" "destination branch" //checks for differences
+git checkout -- "filename" //reverts local changes
+
+
+https://rogerdudler.github.io/git-guide/index.de.html  //helpful link
