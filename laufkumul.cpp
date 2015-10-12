@@ -19,7 +19,7 @@ void laufkumul() {
             char* pch = strtok(line.c_str(), SPLIT);
 			strecke.push_back(atof(pch));
 			NEXTT(tag);
-			NEXTT(anzahl);
+	//		NEXTT(anzahl);
 			n++;
 		}
 	}
@@ -27,29 +27,34 @@ void laufkumul() {
 	
 	float* x  = &tag[0];
 	float* y  = &strecke[0];
-	float* z  = &anzahl[0];
+	//float* z  = &anzahl[0];
 
 
 
 	const int k=n;
 	float y1[k];
 	float proc[k];
-
+	float z[k];
 	for (int i=0;i<k; i++){
 		if(i==0) {y1[i]=y[i];}
 		else	{y1[i]= y[i]+y1[i-1];}
-		proc[i]=anzahl[i]/tag[i];
+		z[i]=i+1;
+		proc[i]=z[i]/tag[i];
 	}
 
 	c1 = new TCanvas("laufkumul","laufkumul",200,9,700,500);
 	c1->SetGrid();
 	gr = new TGraph(n,x,y1);
+	gr2 = new TGraph(n,z,y1);
 	gr->SetTitle("Laufstrecke");
 	gr->GetXaxis()->SetTitle("Nummer des tages");
 	gr->GetYaxis()->SetTitle("Strecke gelaufen");
 	gr->SetMarkerColor(kBlack);
+	gr2->SetMarkerColor(kRed);
 	gr->SetMarkerStyle(8);
+	gr2->SetMarkerStyle(8);
 	gr->Draw("AP");
+//	gr2->Draw("SAME");
 	c1->Update();
 
 	c2 = new TCanvas("Prozentanteil","anteil",915,9,700,500);
@@ -62,6 +67,20 @@ void laufkumul() {
 	c2->Update();
 
 
+	float sum[0];
+	sum[0]= 0;
+	int k1=k-1;
+	int k2=k-1;
+	for (int i=x[k-1]; i>=x[k-1]-6; i--){
+		if(i==x[k2]){
+			sum[0]+=y[k1];
+			//sum+=y[i]
+			k1--;
+			k2--;
+		}
+	}
+	cout << "Gesamtstrecke ist:" << y1[k-1] << " und in den letzten 7 Tagen, bin ich " << sum[0] << " gelaufen." << endl;
+	
 //	strecke.clear();
 //	delete tag;
 //	delete anzahl;
