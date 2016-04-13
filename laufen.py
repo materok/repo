@@ -1,8 +1,8 @@
 import numpy as np
 from ROOT import *
-import os
-import time
-from datetime import date
+#import os
+#import time
+#from datetime import date
 
 def tConvert(time):
     
@@ -17,13 +17,17 @@ def tConvert(time):
         time_min=np.append(time_min,timeInMin)
     return time_new,time_min
     
-def calcVelo(distance,time):
+def calcVelo(distance,time): #distance and time are arrays
     
     #distance in km, time in h => vel in km/h
+    for entry in time:
+        if entry==0:
+            entry=1
+            print "entry was 0 and has been set to 1"
     vel=distance/time
     return vel
     
-def makeCumul(distance):
+def makeCumul(distance): #distance is an array
     
     distanceCumul=np.array([],'d')
     cumul=0
@@ -32,7 +36,7 @@ def makeCumul(distance):
         distanceCumul=np.append(distanceCumul,cumul)
     return distanceCumul
     
-def percentage(day):
+def percentage(day): #day is an array
     
     n=0.
     perc_arr=np.array([],'d')
@@ -49,7 +53,7 @@ def new_arr(arr):
         arr_new=np.append(arr_new,val)
     return arr_new
     
-def diff(y,x,f):
+def diff(y,x,f): #f is a function
     
     y_new=np.array([],'d')
     for i in range(0,len(y)):
