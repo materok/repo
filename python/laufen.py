@@ -1,84 +1,17 @@
 import numpy as np
 from ROOT import *
+#from helper.helper import tConvert,calcVelo,makeCumul,percentage,new_arr,diff,delta
+from helper.helper import *
 #import os
 #import time
 #from datetime import date
-
-def tConvert(time):
-    
-    time_new=np.array([],'d')
-    time_min=np.array([],'d')
-    for time_old in time:
-        min=int(time_old)
-        sec=(time_old-min)/.6
-        hour=(min+sec)/60
-        timeInMin=(min+sec)
-        time_new=np.append(time_new,hour)
-        time_min=np.append(time_min,timeInMin)
-    return time_new,time_min
-    
-def calcVelo(distance,time): #distance and time are arrays
-    
-    #distance in km, time in h => vel in km/h
-    for entry in time:
-        if entry==0:
-            entry=1
-            print "entry was 0 and has been set to 1"
-    vel=distance/time
-    return vel
-    
-def makeCumul(distance): #distance is an array
-    
-    distanceCumul=np.array([],'d')
-    cumul=0
-    for dist in distance:
-        cumul+=dist
-        distanceCumul=np.append(distanceCumul,cumul)
-    return distanceCumul
-    
-def percentage(day): #day is an array
-    
-    n=0.
-    perc_arr=np.array([],'d')
-    for run in day:
-        n+=1
-        perc=n/run*100
-        perc_arr=np.append(perc_arr,perc)
-    return perc_arr
-
-def new_arr(arr):
-    
-    arr_new=np.array([],'d')
-    for val in arr:
-        arr_new=np.append(arr_new,val)
-    return arr_new
-    
-def diff(y,x,f): #f is a function
-    
-    y_new=np.array([],'d')
-    for i in range(0,len(y)):
-        y_new= np.append(y_new, y[i]-f(x[i]) )
-    return y_new
-	
-def delta(arr):
-    
-    arr_new=np.array([],'d')
-    for i in range(1,len(arr)):
-        arr_new= np.append(arr_new, arr[i]-arr[i-1] )
-    return arr_new
-
-def Markers(graph,Color=1,Style=21):
-    graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan  
-    graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes 
-    #https://root.cern.ch/doc/v606/classTAttMarker.html
-
 def main():
     
     #base=os.getcwd()
     #date=time.strftime("%Y-%m-%d")
     #os.mkdir(date)
     #km5,t5,bpm,day,km1,t1,km2,t2,km3,t3,km4,t4= np.genfromtxt('data.txt', unpack=True)
-    km5,t5,bpm,bpm_max,day= np.genfromtxt('dataLight.txt', unpack=True)
+    km5,t5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     bpm=new_arr(bpm)
     bpm_max=new_arr(bpm_max)    
@@ -103,7 +36,7 @@ def main():
     Markers(gr)
     gr.Draw("AP")
     c1.Update()
-    c1.SaveAs("test.png")
+    c1.SaveAs("../plots/test.png")
     
     c2 = TCanvas("Prozentanteil","anteil",915,9,700,500)
 
@@ -115,7 +48,7 @@ def main():
     Markers(gr1,1,8)
     gr1.Draw("AP")
     c2.Update()
-    c2.SaveAs("test1.png")
+    c2.SaveAs("../plots/test1.png")
 
     c6 = TCanvas("laufen2016","laufen",1200,1000)
     
@@ -168,8 +101,8 @@ def main():
     gr5.Draw("AP")
     #f2.Draw("SAME")
     c6.Update()
-    c6.SaveAs("test2.png")
-    c6.SaveAs("test2.pdf")
+    c6.SaveAs("../plots/test2.png")
+    c6.SaveAs("../plots/test2.pdf")
   #  raw_input("")
 
     c3 = TCanvas("bpm","bpm",200,9,700,500)
@@ -178,7 +111,7 @@ def main():
     Markers(gr6,4,21)
     gr6.Draw("AP")
     c3.Update()
-    c3.SaveAs("test3.png")
+    c3.SaveAs("../plots/test3.png")
 
     c5 = TCanvas("bpm_max","bpm_max",200,9,700,500)
     gr7 = TGraph(len(day),day,bpm_max)
@@ -186,7 +119,7 @@ def main():
     Markers(gr7,4,21)
     gr7.Draw("AP")
     c5.Update()
-    c5.SaveAs("test5.png")
+    c5.SaveAs("../plots/test5.png")
 
     minX = km5.min()
     maxX = km5.max()
@@ -201,7 +134,7 @@ def main():
     histogram.SetTitle(";Strecke in km;Zeit pro km");
     histogram.SetMarkerColor(kBlue+1);
     histogram.Draw("lego2");
-    c4.SaveAs("test4.png");
+    c4.SaveAs("../plots/test4.png");
     
 
 if __name__=="__main__":
