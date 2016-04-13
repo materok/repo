@@ -1,6 +1,6 @@
 void pi()
 {
-	const int nrEvents=100000;
+	const int nrEvents=1000000;
 	
 	TRandom3 *r3=new TRandom3();
 	TRandom3 *x1=new TRandom3();
