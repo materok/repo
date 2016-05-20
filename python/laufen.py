@@ -7,9 +7,6 @@ from helper.helper import *
 #from datetime import date
 def main():
     
-    #base=os.getcwd()
-    #date=time.strftime("%Y-%m-%d")
-    #os.mkdir(date)
     #km5,t5,bpm,day,km1,t1,km2,t2,km3,t3,km4,t4= np.genfromtxt('data.txt', unpack=True)
     km5,t5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
@@ -29,34 +26,32 @@ def main():
     cumulDist= makeCumul(km5)
     perc=percentage(day)
     
-    c1 = TCanvas("laufkumul","laufkumul",200,9,700,500)
+    
+    f2 = TF1("f2","[0]+[1]*x", 0, 500)    
+    f2.SetParameters((int(day[-1]/7)+1)*20,0)
+    c1 = TCanvas("LaufKumul","laufkumul",200,9,700,500)
     c1.SetGrid()
     gr = TGraph(len(t5),day,cumulDist)
     gr.SetTitle("Laufstrecke;Nummer des Tages;Strecke gelaufen")
     Markers(gr)
     gr.Draw("AP")
+    f2.Draw("same")
     c1.Update()
-    c1.SaveAs("../plots/test.png")
-    
-    c2 = TCanvas("Prozentanteil","anteil",915,9,700,500)
+    SavePlotPNG(c1,c1.GetTitle())
+
+    c2 = TCanvas("ProzentGelaufen","anteil",915,9,700,500)
 
     gr1 = TGraph(len(day),day,perc)
     gr1.SetTitle("Lauf Prozent;Nummer des Tages; Prozent")
-#    gr1.GetXaxis().SetTitle("Nummer des Tages")
-#    gr1.GetYaxis().SetTitle("Prozent")
-    #gr1.SetMarkerStyle(8)
     Markers(gr1,1,8)
     gr1.Draw("AP")
     c2.Update()
-    c2.SaveAs("../plots/test1.png")
-
+    SavePlotPNG(c2,c2.GetTitle())
+    
     c6 = TCanvas("laufen2016","laufen",1200,1000)
     
     gr2 = TGraph(len(t5),day,t5min)
     gr2.SetTitle("Laufzeiten;Tag;Zeit in min")
-#    Markers(gr2,kBlue,8)
-#    gr2.SetMarkerColor(kBlack)
-#    gr2.SetMarkerStyle(8)
     f1 = TF1("f1","[0]+[1]*x", 0, 500)
     f1.SetParameters(34,-0.5)
     gr2.Fit("f1", "R")
@@ -64,7 +59,6 @@ def main():
 	
     gr4 = TGraph(len(day),day,vel5)
     gr4.SetTitle("Geschwindigkeiten Laufzeiten 2015;Tag;Geschwindigkeit in #frac{km}{h}")
-#    Markers(gr4,1,8)
     f3 = TF1("f3","[0]+[1]*x", 0, 500)
     f3.SetParameters(34,-0.5)
     gr4.Fit("f3", "R")
@@ -72,13 +66,11 @@ def main():
     resVel=diff(vel5,day,f3)
     gr3 = TGraph(len(day),day,resVel)
     gr3.SetTitle("Abweichung von Fit;Tag;Abweichung der Geschwindigkeit")
-#    Markers(gr3,1,8)
     f2 = TF1("f1","0", 0, 500)
 
     deltaVel=delta(vel5)
     gr5 = TGraph(len(day),day,deltaVel)
     gr5.SetTitle("Differenz von Geschwindigkeiten von aufeinanderfolgenden Laeufen;Tag;Differenz")
-#    Markers(gr5,1,8)
 
     Graphs=[gr2,gr3,gr4,gr5]
     for graph in Graphs:
@@ -91,7 +83,7 @@ def main():
     c6.cd(2)
     c6.cd(2).SetGrid()
     gr3.Draw("AP")
-    #f2.Draw("SAME")
+    f2.Draw("SAME")
     c6.Update()
     c6.cd(3)
     c6.cd(3).SetGrid()
@@ -99,43 +91,47 @@ def main():
     c6.cd(4)
     c6.cd(4).SetGrid()
     gr5.Draw("AP")
-    #f2.Draw("SAME")
+    f2.Draw("SAME")
     c6.Update()
-    c6.SaveAs("../plots/test2.png")
-    c6.SaveAs("../plots/test2.pdf")
-  #  raw_input("")
+    SavePlotPNG(c6,c6.GetTitle())
 
-    c3 = TCanvas("bpm","bpm",200,9,700,500)
+    c3 = TCanvas("bpm_avg","bpm_avg",200,9,700,500)
     gr6 = TGraph(len(day),day,bpm)
     gr6.SetTitle("Herzfrequenz;Tag;Herzfrequenz im bpm")
     Markers(gr6,4,21)
     gr6.Draw("AP")
     c3.Update()
-    c3.SaveAs("../plots/test3.png")
-
+    SavePlotPNG(c3,c3.GetTitle())
+    
     c5 = TCanvas("bpm_max","bpm_max",200,9,700,500)
     gr7 = TGraph(len(day),day,bpm_max)
     gr7.SetTitle("max. Herzfrequenz;Tag;max. Herzfrequenz im bpm")
     Markers(gr7,4,21)
     gr7.Draw("AP")
     c5.Update()
-    c5.SaveAs("../plots/test5.png")
+    SavePlotPNG(c5,c5.GetTitle())
 
     minX = km5.min()
     maxX = km5.max()
-    minY = t5min.min()-0.2;
-    maxY = t5min.max()+0.2;
-    binX = (maxX-minX)+1;
-    binY = ((maxY-minY))*10;
-    c4= TCanvas("2dhist","2dhist", 915,567,700,500);
-    histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY);
+    minY = t5min.min()-0.2
+    maxY = t5min.max()+0.2
+    binX = (maxX-minX)+1
+    binY = ((maxY-minY))*10
+    c4= TCanvas("ZeitStrecke","ZeitStrecke", 915,567,700,500)
+    histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY)
     for i in range(0,len(km5)):
-        histogram.Fill(km5[i],t5min[i]);
-    histogram.SetTitle(";Strecke in km;Zeit pro km");
-    histogram.SetMarkerColor(kBlue+1);
-    histogram.Draw("lego2");
-    c4.SaveAs("../plots/test4.png");
-    
+        histogram.Fill(km5[i],t5min[i])
+    histogram.SetTitle(";Strecke in km;Zeit pro km")
+    histogram.SetMarkerColor(kBlue+1)
+    histogram.Draw("lego2")
+    SavePlotPNG(c4,c4.GetTitle())
+   
+    DrawThis = [c1,c2,c3,c4,c5,c6]
+    for Canvas in DrawThis:
+        SavePlotPDF(Canvas,Canvas.GetTitle())
+#        SavePlotJPG(Canvas,Canvas.GetTitle())
+#        SavePlotPNG(Canvas,Canvas.GetTitle())
+
 
 if __name__=="__main__":
     main()

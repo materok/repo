@@ -68,3 +68,13 @@ def Markers(graph,Color=1,Style=21):
     graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan  
     graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes 
     #https://root.cern.ch/doc/v606/classTAttMarker.html
+
+def SavePlotPDF(Canvas,Title,Path="../plots/"):
+    Canvas.SaveAs(Path+Title+".pdf")
+
+def SavePlotJPG(Canvas,Title,Path="../plots/"):
+    Canvas.SaveAs(Path+Title+".jpg")
+
+def SavePlotPNG(Canvas,Title,Path="../plots/"):
+    Canvas.SaveAs(Path+Title+".png")
+    
