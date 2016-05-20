@@ -1,7 +1,7 @@
 import numpy as np
 from ROOT import *
 #from helper.helper import tConvert,calcVelo,makeCumul,percentage,new_arr,diff,delta
-from helper.helper import *
+from helper.laufen import *
 #import os
 #import time
 #from datetime import date
