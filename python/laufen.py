@@ -42,5 +42,8 @@ def main():
     c6 = TCanvas("laufen2016","laufen",1200,1000)
     MakeFourPlots(c6,day,t5min,vel5)
 
+    c7 = TCanvas("tag", "TagGelaufen",1200,1000)
+    MakeDayPlot(c7,day)
+
 if __name__=="__main__":
     main()

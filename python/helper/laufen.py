@@ -64,6 +64,14 @@ def delta(arr):
         arr_new= np.append(arr_new, arr[i]-arr[i-1] )
     return arr_new
 
+def TimeError(time):
+    
+    const=20./60.
+    errors=np.array([],'d')
+    for value in time:
+        errors=np.append(errors,const)
+    return errors        
+    
 def VelError(velo):
     
     const=50./2100.
@@ -76,6 +84,12 @@ def Markers(graph,Color=1,Style=21):
     graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan  
     graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes 
     #https://root.cern.ch/doc/v606/classTAttMarker.html
+
+def CheckDay(day):
+
+    test=day+3
+    test=test%7
+    return test
 
 def SavePlotPDF(Canvas,Title,Path="../plots/"):
     Canvas.SaveAs(Path+Title+".pdf")
@@ -102,7 +116,7 @@ def MakeBPMPlots(canvas,day,bpm,option="avg"):
     
 def MakeFourPlots(canvas,day,time,velo):    
     
-    gr1 = TGraph(len(time),day,time)
+    gr1 = TGraphErrors(len(time),day,time,np.zeros(len(day)),TimeError(time))
     gr1.SetTitle("Laufzeiten;Tag;Zeit in min")
     f1 = TF1("f1","[0]+[1]*x", 0, 500)
     f1.SetParameters(34,-0.5)
@@ -188,5 +202,20 @@ def Make2DPlot(canvas,time,distance):
     histogram.SetTitle(";Strecke in km;Zeit pro km")
     histogram.SetMarkerColor(kBlue+1)
     histogram.Draw("lego2")
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
+def MakeDayPlot(canvas,day):
+    
+    histogram = TH1D("h", "", 7, 0, 7)
+    histogram.SetTitle(";Tag;Eintraege")
+    for entry in day:
+        histogram.Fill(CheckDay(entry))
+    Labels=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    n_bin=1
+    for label in Labels:
+        histogram.GetXaxis().SetBinLabel(n_bin,label)
+        n_bin+=1
+    histogram.Draw()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
