@@ -77,4 +77,110 @@ def SavePlotJPG(Canvas,Title,Path="../plots/"):
 
 def SavePlotPNG(Canvas,Title,Path="../plots/"):
     Canvas.SaveAs(Path+Title+".png")
+
+def MakeBPMPlots(canvas,day,bpm,option="avg"):
     
+    graph = TGraph(len(day),day,bpm)
+    graph = TGraph(len(day),day,bpm)
+    if option=="avg":
+        graph.SetTitle("Herzfrequenz;Tag;Herzfrequenz im bpm")
+    elif option=="max":
+        graph.SetTitle("max. Herzfrequenz;Tag;max. Herzfrequenz im bpm")
+    Markers(graph,4,21)
+    graph.Draw("AP")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+    
+def MakeFourPlots(canvas,day,time,velo):    
+    
+    gr1 = TGraph(len(time),day,time)
+    gr1.SetTitle("Laufzeiten;Tag;Zeit in min")
+    f1 = TF1("f1","[0]+[1]*x", 0, 500)
+    f1.SetParameters(34,-0.5)
+    gr1.Fit("f1", "R")
+    gStyle.SetOptFit(1111)
+	
+    gr2 = TGraph(len(day),day,velo)
+    gr2.SetTitle("Geschwindigkeiten Laufzeiten 2015;Tag;Geschwindigkeit in #frac{km}{h}")
+    f3 = TF1("f3","[0]+[1]*x", 0, 500)
+    f3.SetParameters(34,-0.5)
+    gr2.Fit("f3", "R")
+    
+    resVel=diff(velo,day,f3)
+    gr3 = TGraph(len(day),day,resVel)
+    gr3.SetTitle("Abweichung von Fit;Tag;Abweichung der Geschwindigkeit")
+    f2 = TF1("f1","0", 0, 500)
+
+    deltaVel=delta(velo)
+    print day    
+    print deltaVel
+    gr4 = TGraph(len(deltaVel),day,deltaVel)
+    gr4.SetTitle("Differenz von Geschwindigkeiten von aufeinanderfolgenden Laeufen;Tag;Differenz")
+
+    Graphs=[gr1,gr2,gr3,gr4]
+    for graph in Graphs:
+        Markers(graph,1,8)
+
+    canvas.Divide(2,2)
+    canvas.cd(1)
+    canvas.cd(1).SetGrid()
+    gr1.Draw("AP")
+    canvas.cd(2)
+    canvas.cd(2).SetGrid()
+    gr3.Draw("AP")
+    f2.Draw("SAME")
+    canvas.Update()
+    canvas.cd(3)
+    canvas.cd(3).SetGrid()
+    gr2.Draw("AP")
+    canvas.cd(4)
+    canvas.cd(4).SetGrid()
+    gr4.Draw("AP")
+    f2.Draw("SAME")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+    
+def MakeCumulPlot(canvas,day,distance):
+
+    func = TF1("f2","[0]+[1]*x", 0, 500)    
+    func.SetParameters((int(day[-1]/7)+1)*20,0)
+    canvas.SetGrid()
+    cumulDist= makeCumul(distance)
+    graph = TGraph(len(day),day,cumulDist)
+    graph.SetTitle("Laufstrecke;Nummer des Tages;Strecke gelaufen")
+    Markers(graph)
+    graph.Draw("AP")
+    func.Draw("same")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
+def MakePercPlot(canvas,day):
+  
+    perc=percentage(day)
+    graph = TGraph(len(day),day,perc)
+    graph.SetTitle("Lauf Prozent;Nummer des Tages; Prozent")
+    Markers(graph,1,8)
+    graph.Draw("AP")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+    
+def Make2DPlot(canvas,time,distance):
+    
+    minX = distance.min()
+    maxX = distance.max()
+    minY = time.min()-0.2
+    maxY = time.max()+0.2
+    binX = (maxX-minX)+1
+    binY = ((maxY-minY))*10
+    histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY)
+    for i in range(0,len(distance)):
+        histogram.Fill(distance[i],time[i])
+    histogram.SetTitle(";Strecke in km;Zeit pro km")
+    histogram.SetMarkerColor(kBlue+1)
+    histogram.Draw("lego2")
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
