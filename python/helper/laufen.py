@@ -64,6 +64,14 @@ def delta(arr):
         arr_new= np.append(arr_new, arr[i]-arr[i-1] )
     return arr_new
 
+def VelError(velo):
+    
+    const=50./2100.
+    errors=np.array([],'d')
+    for value in velo:
+        errors=np.append(errors,value*const)
+    return errors
+
 def Markers(graph,Color=1,Style=21):
     graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan  
     graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes 
@@ -101,7 +109,7 @@ def MakeFourPlots(canvas,day,time,velo):
     gr1.Fit("f1", "R")
     gStyle.SetOptFit(1111)
 	
-    gr2 = TGraph(len(day),day,velo)
+    gr2 = TGraphErrors(len(day),day,velo,np.zeros(len(day)),VelError(velo))
     gr2.SetTitle("Geschwindigkeiten Laufzeiten 2015;Tag;Geschwindigkeit in #frac{km}{h}")
     f3 = TF1("f3","[0]+[1]*x", 0, 500)
     f3.SetParameters(34,-0.5)
@@ -113,8 +121,6 @@ def MakeFourPlots(canvas,day,time,velo):
     f2 = TF1("f1","0", 0, 500)
 
     deltaVel=delta(velo)
-    print day    
-    print deltaVel
     gr4 = TGraph(len(deltaVel),day,deltaVel)
     gr4.SetTitle("Differenz von Geschwindigkeiten von aufeinanderfolgenden Laeufen;Tag;Differenz")
 
@@ -130,10 +136,10 @@ def MakeFourPlots(canvas,day,time,velo):
     canvas.cd(2).SetGrid()
     gr3.Draw("AP")
     f2.Draw("SAME")
-    canvas.Update()
     canvas.cd(3)
     canvas.cd(3).SetGrid()
     gr2.Draw("AP")
+    canvas.Update()
     canvas.cd(4)
     canvas.cd(4).SetGrid()
     gr4.Draw("AP")
