@@ -219,3 +219,13 @@ def MakeDayPlot(canvas,day):
     histogram.Draw()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
+    
+def MakeStats(canvas,day,stats):
+  
+    graph = TGraph(len(day),day,stats)
+    graph.SetTitle(";Nummer des Tages; Gewicht in kg")
+    Markers(graph,1,8)
+    graph.Draw("AP")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
