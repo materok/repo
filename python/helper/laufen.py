@@ -2,7 +2,7 @@ import numpy as np
 from ROOT import *
 
 def tConvert(time):
-    
+
     time_new=np.array([],'d')
     time_min=np.array([],'d')
     for time_old in time:
@@ -13,9 +13,26 @@ def tConvert(time):
         time_new=np.append(time_new,hour)
         time_min=np.append(time_min,timeInMin)
     return time_new,time_min
-    
+
+def dayToMonth(day,year):
+    #~ [january,febuary,march,april,may,june,july,august,september,oktober,november,december]
+    month=[31,28,31,30,31,30,31,31,30,31,30,31]
+    if year%4==0:
+        month[1]=month[1]+1
+    i=1
+    counter=1
+    j=0
+    while i<day:
+        counter+=1
+        if counter==month[j]+1:
+            j+=1
+            counter=1
+        i+=1
+    return counter,j+1
+
+
 def calcVelo(distance,time): #distance and time are arrays
-    
+
     #distance in km, time in h => vel in km/h
     for entry in time:
         if entry==0:
@@ -23,18 +40,18 @@ def calcVelo(distance,time): #distance and time are arrays
             print "entry was 0 and has been set to 1"
     vel=distance/time
     return vel
-    
+
 def makeCumul(distance): #distance is an array
-    
+
     distanceCumul=np.array([],'d')
     cumul=0
     for dist in distance:
         cumul+=dist
         distanceCumul=np.append(distanceCumul,cumul)
     return distanceCumul
-    
+
 def percentage(day): #day is an array
-    
+
     n=0.
     perc_arr=np.array([],'d')
     for run in day:
@@ -44,36 +61,36 @@ def percentage(day): #day is an array
     return perc_arr
 
 def new_arr(arr):
-    
+
     arr_new=np.array([],'d')
     for val in arr:
         arr_new=np.append(arr_new,val)
     return arr_new
-    
+
 def diff(y,x,f): #f is a function
-    
+
     y_new=np.array([],'d')
     for i in range(0,len(y)):
         y_new= np.append(y_new, y[i]-f(x[i]) )
     return y_new
-	
+
 def delta(arr):
-    
+
     arr_new=np.array([],'d')
     for i in range(1,len(arr)):
         arr_new= np.append(arr_new, arr[i]-arr[i-1] )
     return arr_new
 
 def TimeError(time):
-    
+
     const=20./60.
     errors=np.array([],'d')
     for value in time:
         errors=np.append(errors,const)
-    return errors        
-    
+    return errors
+
 def VelError(velo):
-    
+
     const=50./2100.
     errors=np.array([],'d')
     for value in velo:
@@ -81,8 +98,8 @@ def VelError(velo):
     return errors
 
 def Markers(graph,Color=1,Style=21):
-    graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan  
-    graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes 
+    graph.SetMarkerColor(Color) ##1: black, 2:red, 3:green, 4:blue,5: yellow, 6: magenta, 7:cyan
+    graph.SetMarkerStyle(Style)  ##1: Dot, 2: cross, 3: Star, 4: circle, 5: x, 8: big point, 21:boxes
     #https://root.cern.ch/doc/v606/classTAttMarker.html
 
 def CheckDay(day):
@@ -101,7 +118,7 @@ def SavePlotPNG(Canvas,Title,Path="../plots/"):
     Canvas.SaveAs(Path+Title+".png")
 
 def MakeBPMPlots(canvas,day,bpm,option="avg"):
-    
+
     graph = TGraph(len(day),day,bpm)
     graph = TGraph(len(day),day,bpm)
     if option=="avg":
@@ -113,22 +130,22 @@ def MakeBPMPlots(canvas,day,bpm,option="avg"):
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
-    
-def MakeFourPlots(canvas,day,time,velo):    
-    
+
+def MakeFourPlots(canvas,day,time,velo):
+
     gr1 = TGraphErrors(len(time),day,time,np.zeros(len(day)),TimeError(time))
     gr1.SetTitle("Laufzeiten;Tag;Zeit in min")
     f1 = TF1("f1","[0]+[1]*x", 0, 500)
     f1.SetParameters(34,-0.5)
     gr1.Fit("f1", "R")
     gStyle.SetOptFit(1111)
-	
+
     gr2 = TGraphErrors(len(day),day,velo,np.zeros(len(day)),VelError(velo))
     gr2.SetTitle("Geschwindigkeiten Laufzeiten 2015;Tag;Geschwindigkeit in #frac{km}{h}")
     f3 = TF1("f3","[0]+[1]*x", 0, 500)
     f3.SetParameters(34,-0.5)
     gr2.Fit("f3", "R")
-    
+
     resVel=diff(velo,day,f3)
     gr3 = TGraph(len(day),day,resVel)
     gr3.SetTitle("Abweichung von Fit;Tag;Abweichung der Geschwindigkeit")
@@ -161,10 +178,10 @@ def MakeFourPlots(canvas,day,time,velo):
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
-    
+
 def MakeCumulPlot(canvas,day,distance):
 
-    func = TF1("f2","[0]+[1]*x", 0, 500)    
+    func = TF1("f2","[0]+[1]*x", 0, 500)
     func.SetParameters((int(day[-1]/7)+1)*20,0)
     canvas.SetGrid()
     cumulDist= makeCumul(distance)
@@ -178,7 +195,7 @@ def MakeCumulPlot(canvas,day,distance):
     SavePlotPDF(canvas,canvas.GetTitle())
 
 def MakePercPlot(canvas,day):
-  
+
     perc=percentage(day)
     graph = TGraph(len(day),day,perc)
     graph.SetTitle("Lauf Prozent;Nummer des Tages; Prozent")
@@ -187,9 +204,9 @@ def MakePercPlot(canvas,day):
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
-    
+
 def Make2DPlot(canvas,time,distance):
-    
+
     minX = distance.min()
     maxX = distance.max()
     minY = time.min()-0.2
@@ -206,7 +223,7 @@ def Make2DPlot(canvas,time,distance):
     SavePlotPDF(canvas,canvas.GetTitle())
 
 def MakeDayPlot(canvas,day):
-    
+
     histogram = TH1D("h", "", 7, 0, 7)
     histogram.SetTitle(";Tag;Eintraege")
     for entry in day:
@@ -219,9 +236,27 @@ def MakeDayPlot(canvas,day):
     histogram.Draw()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
-    
+
+def MakeMonthPlot(canvas,day,year):
+
+
+    Labels=["January","February","March","April","May","June","July","August","Oktober","September","November","Dezember"]
+    histogram = TH1D("h", "", len(Labels), 0, len(Labels))
+    histogram.SetTitle(";Monat;Eintraege")
+    for entry in day:
+        histogram.Fill(dayToMonth(entry,year)[1]-1)
+    n_bin=1
+    for label in Labels:
+        histogram.GetXaxis().SetBinLabel(n_bin,label)
+        n_bin+=1
+    histogram.Draw()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
+
+
 def MakeStats(canvas,day,stats):
-  
+
     graph = TGraph(len(day),day,stats)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)

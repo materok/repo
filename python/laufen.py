@@ -6,12 +6,12 @@ from helper.laufen import *
 #import time
 #from datetime import date
 def main():
-    
+
     #km5,t5,bpm,day,km1,t1,km2,t2,km3,t3,km4,t4= np.genfromtxt('data.txt', unpack=True)
     km5,t5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     bpm=new_arr(bpm)
-    bpm_max=new_arr(bpm_max)    
+    bpm_max=new_arr(bpm_max)
     day=new_arr(day)
  #   t1,t1min = tConvert(t1)
  #   vel1=calcVelo(km5,t5)
@@ -23,27 +23,39 @@ def main():
  #   vel4=calcVelo(km5,t5)
     t5,t5min = tConvert(t5)
     vel5=calcVelo(km5,t5)
-    
+
     c1 = TCanvas("LaufKumul","laufkumul",200,9,700,500)
     MakeCumulPlot(c1,day,km5)
 
     c2 = TCanvas("ProzentGelaufen","anteil",915,9,700,500)
     MakePercPlot(c2,day)
-    
+
     c3 = TCanvas("bpm_avg","bpm_avg",200,9,700,500)
     MakeBPMPlots(c3,day,bpm)
 
     c4= TCanvas("ZeitStrecke","ZeitStrecke", 915,567,700,500)
     Make2DPlot(c4,t5min,km5)
-    
+
     c5 = TCanvas("bpm_max","bpm_max",200,9,700,500)
-    MakeBPMPlots(c5,day,bpm,option="max")
+    MakeBPMPlots(c5,day,bpm_max,option="max")
 
     c6 = TCanvas("laufen2016","laufen",1200,1000)
     MakeFourPlots(c6,day,t5min,vel5)
 
     c7 = TCanvas("tag", "TagGelaufen",1200,1000)
     MakeDayPlot(c7,day)
+
+    c8 = TCanvas("monat", "MonatGelaufen",1200,1000)
+    MakeMonthPlot(c8,day,2016)
+
+    gew,day= np.genfromtxt('../stats.txt', unpack=True)
+    #km5 and t5 are complete distance traveled and time needed
+    gew=new_arr(gew)
+    day=new_arr(day)
+
+    c9 = TCanvas("gewicht","gewicht",200,9,700,500)
+    MakeStats(c1,day,gew)
+
 
 if __name__=="__main__":
     main()
