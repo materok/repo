@@ -8,7 +8,7 @@ from helper.laufen import *
 def main():
 
     #km5,t5,bpm,day,km1,t1,km2,t2,km3,t3,km4,t4= np.genfromtxt('data.txt', unpack=True)
-    km5,t5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
+    t5,km5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     bpm=new_arr(bpm)
     bpm_max=new_arr(bpm_max)
@@ -48,13 +48,16 @@ def main():
     c8 = TCanvas("monat", "MonatGelaufen",1200,1000)
     MakeMonthPlot(c8,day,2016)
 
+    c10 = TCanvas("LBLcomp", "LBL comparison",1200,1000)
+    MakeLBLPlot(c10,day,vel5)
+
     gew,day= np.genfromtxt('../stats.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     gew=new_arr(gew)
     day=new_arr(day)
 
     c9 = TCanvas("gewicht","gewicht",200,9,700,500)
-    MakeStats(c1,day,gew)
+    MakeStats(c9,day,gew)
 
 
 if __name__=="__main__":

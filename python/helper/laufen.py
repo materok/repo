@@ -1,6 +1,23 @@
 import numpy as np
 from ROOT import *
 
+def moment(array, mu, sigma, n):
+
+    nom=0.
+    for item in array:
+        nom += ( (item-mu) / sigma )**n
+    return nom/len(array)
+
+def mean(array):
+
+    res=moment(array,0,1,1)
+    return res
+
+def var(array):
+
+    res=moment(array,moment(array,0,1,1),1,2)
+    return res
+
 def tConvert(time):
 
     time_new=np.array([],'d')
@@ -253,11 +270,32 @@ def MakeMonthPlot(canvas,day,year):
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
+def MakeLBLPlot(canvas,day,velo):
+
+    length=5.555
+    const=50./2100.
+    time_trans=length/velo*60.
+    #~ time_trans=length/VelError(velo)*60.
+    time_err=np.sqrt(const**2+(VelError(velo)/velo)**2)*time_trans
+    graph = TGraphErrors(len(velo),day,time_trans,np.zeros(len(day)),time_err)
+    graph.SetTitle("auf LBL umgerechnete Zeit;Nummer des Tages; Zeit in Min")
+    graph.SetMarkerStyle(21)
+    graph.Draw("AP")
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
 
 
 def MakeStats(canvas,day,stats):
 
-    graph = TGraph(len(day),day,stats)
+    xerr=np.zeros(len(day))
+    yerr=np.zeros(len(stats))
+    for i in range(0,len(stats)):
+        if i < 5:
+            yerr[i]=var(stats[:5])**.5
+        else:
+            yerr[i]=var(stats[i-4:i+2])**.5
+    graph = TGraphErrors(len(day),day,stats,xerr,yerr)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)
     graph.Draw("AP")
