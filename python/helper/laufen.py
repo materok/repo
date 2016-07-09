@@ -224,18 +224,41 @@ def MakePercPlot(canvas,day):
 
 def Make2DPlot(canvas,time,distance):
 
-    minX = distance.min()
-    maxX = distance.max()
-    minY = time.min()-0.2
-    maxY = time.max()+0.2
-    binX = (maxX-minX)+1
+    ROOT.gStyle.SetOptStat(0)
+    minX = int(distance.min())
+    maxX = int(distance.max()+1)
+    y=time/distance
+    minY = y.min()-0.2
+    maxY = y.max()+0.2
+    binX = (maxX-minX)
     binY = ((maxY-minY))*10
     histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY)
     for i in range(0,len(distance)):
-        histogram.Fill(distance[i],time[i])
-    histogram.SetTitle(";Strecke in km;Zeit pro km")
+        histogram.Fill(distance[i],y[i])
+    histogram.SetTitle(";Strecke in km;Zeit in min/km")
     histogram.SetMarkerColor(kBlue+1)
-    histogram.Draw("lego2")
+    histogram.Draw("colz2")
+    canvas.Update()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
+
+def MakeOld2DPlot(canvas,time,distance):
+
+    ROOT.gStyle.SetOptStat(0)
+    minX = int(distance.min()-1)
+    maxX = int(distance.max()+1)
+    minY = time.min()-0.2
+    maxY = time.max()+0.2
+    binX = (maxX-minX)
+    binY = ((maxY-minY))
+    histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY)
+    for i in range(0,len(distance)):
+        histogram.Fill(distance[i],time[i])
+    histogram.SetTitle(";Strecke in km;Zeit in min")
+    histogram.SetMarkerColor(kBlue+1)
+    histogram.Draw("colz2")
+    canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
@@ -270,6 +293,24 @@ def MakeMonthPlot(canvas,day,year):
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
+def MakeMonthKMPlot(canvas,day,year,dist):
+
+
+    Labels=["January","February","March","April","May","June","July","August","Oktober","September","November","Dezember"]
+    histogram = TH1D("h", "", len(Labels), 0, len(Labels))
+    histogram.SetTitle(";Monat;km gelaufen")
+    for i in range(0,len(day)):
+        histogram.Fill(dayToMonth(day[i],year)[1]-1,dist[i])
+    n_bin=1
+    for label in Labels:
+        histogram.GetXaxis().SetBinLabel(n_bin,label)
+        n_bin+=1
+    histogram.Draw()
+    histogram.Draw("same text")
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+
+
 def MakeLBLPlot(canvas,day,velo):
 
     length=5.555
@@ -293,8 +334,11 @@ def MakeStats(canvas,day,stats):
     for i in range(0,len(stats)):
         if i < 5:
             yerr[i]=var(stats[:5])**.5
+        #~ elif i >len(stats)-5:
+            #~ yerr[i]=var(stats[i-6:i])**.5
         else:
-            yerr[i]=var(stats[i-4:i+2])**.5
+            yerr[i]=var(stats[i-5:i])**.5
+            #~ yerr[i]=var(stats[i-4:i+2])**.5
     graph = TGraphErrors(len(day),day,stats,xerr,yerr)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)

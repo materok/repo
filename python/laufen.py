@@ -36,6 +36,9 @@ def main():
     c4= TCanvas("ZeitStrecke","ZeitStrecke", 915,567,700,500)
     Make2DPlot(c4,t5min,km5)
 
+    c11= TCanvas("ZeitStrecke_old","ZeitStrecke_old", 915,567,700,500)
+    MakeOld2DPlot(c11,t5min,km5)
+
     c5 = TCanvas("bpm_max","bpm_max",200,9,700,500)
     MakeBPMPlots(c5,day,bpm_max,option="max")
 
@@ -47,6 +50,9 @@ def main():
 
     c8 = TCanvas("monat", "MonatGelaufen",1200,1000)
     MakeMonthPlot(c8,day,2016)
+
+    c12 = TCanvas("monat_km", "MonatKMGelaufen",1200,1000)
+    MakeMonthKMPlot(c12,day,2016,km5)
 
     c10 = TCanvas("LBLcomp", "LBL comparison",1200,1000)
     MakeLBLPlot(c10,day,vel5)
