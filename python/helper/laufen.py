@@ -228,10 +228,14 @@ def Make2DPlot(canvas,time,distance):
     minX = int(distance.min())
     maxX = int(distance.max()+1)
     y=time/distance
-    minY = y.min()-0.2
-    maxY = y.max()+0.2
+    minY = int(y.min())
+    if y.min()-int(y.min())>0.5:
+        minY+=0.5
+    maxY = int(y.max())+0.5
+    if y.max()-int(y.max())>0.5:
+        maxY+=0.5
     binX = (maxX-minX)
-    binY = ((maxY-minY))*10
+    binY = (maxY-minY)*12  # 60s/12bins = 5s/bin
     histogram = TH2F("h", "", int(binX), minX, maxX, int(binY), minY, maxY)
     for i in range(0,len(distance)):
         histogram.Fill(distance[i],y[i])
