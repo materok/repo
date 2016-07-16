@@ -57,13 +57,13 @@ def main():
     c10 = TCanvas("LBLcomp", "LBL comparison",1200,1000)
     MakeLBLPlot(c10,day,vel5)
 
-    gew,day= np.genfromtxt('../stats.txt', unpack=True)
+    gew,day1= np.genfromtxt('../stats.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     gew=new_arr(gew)
-    day=new_arr(day)
+    day1=new_arr(day1)
 
     c9 = TCanvas("gewicht","gewicht",200,9,700,500)
-    MakeStats(c9,day,gew)
+    MakeStats(c9,day1,gew,day)
 
 
 if __name__=="__main__":

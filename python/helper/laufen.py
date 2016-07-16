@@ -331,22 +331,30 @@ def MakeLBLPlot(canvas,day,velo):
 
 
 
-def MakeStats(canvas,day,stats):
+def MakeStats(canvas,day,stats,day_run):
 
+    x_run=np.zeros(len(day))
     xerr=np.zeros(len(day))
+    xerr_run=np.zeros(len(day))
     yerr=np.zeros(len(stats))
+    y_run=np.zeros(len(stats))
+    yerr_run=np.zeros(len(stats))
     for i in range(0,len(stats)):
         if i < 5:
             yerr[i]=var(stats[:5])**.5
-        #~ elif i >len(stats)-5:
-            #~ yerr[i]=var(stats[i-6:i])**.5
         else:
             yerr[i]=var(stats[i-5:i])**.5
-            #~ yerr[i]=var(stats[i-4:i+2])**.5
+        if day[i] in day_run:
+            x_run[i]=day[i]
+            y_run[i]=stats[i]
+            yerr_run[i]=yerr[i]
     graph = TGraphErrors(len(day),day,stats,xerr,yerr)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)
     graph.Draw("AP")
+    graph_run = TGraphErrors(len(day_run),x_run,y_run,xerr,yerr_run)
+    Markers(graph_run,3,8)
+    graph_run.Draw("same P")
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
