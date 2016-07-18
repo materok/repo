@@ -207,9 +207,17 @@ def MakeCumulPlot(canvas,day,distance):
     Markers(graph)
     graph.Draw("AP")
     func.Draw("same")
+    string="gelaufene Strecke: " + str(cumulDist[-1]) + " km"
+    tex=TLatex(0.5,0.5,"u")
+    tex.SetNDC()
+    tex.SetTextAlign(11)
+    tex.SetTextSize(0.05)
+    tex.DrawLatex(0.44,0.1,string)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
+    print "ich bin schon ", cumulDist[-1]," km gelaufen"
+    print "ich haette ", func.GetParameter(0)," km laufen sollen"
 
 def MakePercPlot(canvas,day):
 
