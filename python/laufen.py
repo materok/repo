@@ -58,11 +58,10 @@ def main():
     MakeLBLPlot(c10,day,vel5)
 
     gew,day1= np.genfromtxt('../stats.txt', unpack=True)
-    #km5 and t5 are complete distance traveled and time needed
     gew=new_arr(gew)
     day1=new_arr(day1)
 
-    c9 = TCanvas("gewicht","gewicht",200,9,700,500)
+    c9 = TCanvas("gewicht","gewicht",200,9,1400,500)
     MakeStats(c9,day1,gew,day)
 
 

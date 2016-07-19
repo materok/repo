@@ -339,7 +339,7 @@ def MakeLBLPlot(canvas,day,velo):
 
 
 
-def MakeStats(canvas,day,stats,day_run):
+def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.005):
 
     x_run=np.zeros(len(day))
     xerr=np.zeros(len(day))
@@ -347,6 +347,8 @@ def MakeStats(canvas,day,stats,day_run):
     yerr=np.zeros(len(stats))
     y_run=np.zeros(len(stats))
     yerr_run=np.zeros(len(stats))
+    y_bmi=np.zeros(len(stats))
+    yerr_bmi=np.zeros(len(stats))
     for i in range(0,len(stats)):
         if i < 5:
             yerr[i]=var(stats[:5])**.5
@@ -356,6 +358,11 @@ def MakeStats(canvas,day,stats,day_run):
             x_run[i]=day[i]
             y_run[i]=stats[i]
             yerr_run[i]=yerr[i]
+        y_bmi[i]=stats[i]/(height**2)
+        #~ yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2+(2*height_err/height)**2)
+        yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2)
+    canvas.Divide(2)
+    canvas.cd(1)
     graph = TGraphErrors(len(day),day,stats,xerr,yerr)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)
@@ -364,5 +371,33 @@ def MakeStats(canvas,day,stats,day_run):
     Markers(graph_run,3,8)
     graph_run.Draw("same P")
     canvas.Update()
+    canvas.cd(2)
+    bmi_graph = TGraphErrors(len(day),day,y_bmi,xerr,yerr_bmi)
+    bmi_graph.SetTitle(";Nummer des Tages; BMI in #frac{kg}{m^{2}}")
+    Markers(bmi_graph,1,8)
+    bmi_graph.Draw("AP")
+    canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
+
+
+    lowBound=19.
+    if 19 > min(y_bmi):
+        lowBound=min(y_bmi)/0.99
+    bmi_graph.GetYaxis().SetRangeUser(lowBound,max(y_bmi)*1.01)
+    func=TF1("f1","[0]",0,365)
+    func.SetParameter(0,20)
+    func.Draw("SAME")
+    canvas.cd(1)
+    lowBound=19.*height**2
+    if 19*height**2 > min(stats):
+        lowBound=min(stats)/0.99
+    graph.GetYaxis().SetRangeUser(lowBound,max(stats)*1.01)
+    func1=TF1("f2","[0]",0,365)
+    func1.SetParameter(0,20.*height**2)
+    func1.Draw("SAME")
+    canvas.Update()
+    SavePlotPNG(canvas,"wunsch"+canvas.GetTitle())
+    SavePlotPDF(canvas,"wunsch"+canvas.GetTitle())
+
+
