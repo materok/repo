@@ -308,17 +308,41 @@ def MakeMonthPlot(canvas,day,year):
 def MakeMonthKMPlot(canvas,day,year,dist):
 
 
+    ROOT.gStyle.SetOptStat(0)
     Labels=["January","February","March","April","May","June","July","August","Oktober","September","November","Dezember"]
     histogram = TH1D("h", "", len(Labels), 0, len(Labels))
+    histogram1 = TH1D("h1", "", len(Labels), 0, len(Labels))
     histogram.SetTitle(";Monat;km gelaufen")
     for i in range(0,len(day)):
         histogram.Fill(dayToMonth(day[i],year)[1]-1,dist[i])
     n_bin=1
+    i=1
     for label in Labels:
         histogram.GetXaxis().SetBinLabel(n_bin,label)
         n_bin+=1
+        if histogram.GetBinContent(n_bin)>0.:
+            i+=1
+    multi=dayToMonth(day[-1],year)[0]
+    if i in [1,3,5,7,8,10,12]:
+        multi/=31.
+    elif i in [4,6,9,11]:
+        multi/=30.
+    elif i in [2]:
+        multi/=28.
+    else:
+        print "something strange is going on, could not find case"
+    multi=1/multi
+    histogram1.Fill(dayToMonth(day[-1],year)[1]-1,histogram.GetBinContent(i)*multi)
+    leg=TLegend(0.7,0.8,0.9,0.9)
+    leg.AddEntry(histogram,"data","l")
+    leg.AddEntry(histogram1,"prognosis","l")
+
     histogram.Draw()
     histogram.Draw("same text")
+    histogram1.SetLineColor(kRed)
+    histogram1.Draw("same")
+    histogram1.Draw("same text")
+    leg.Draw("same")
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
