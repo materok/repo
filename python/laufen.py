@@ -54,6 +54,9 @@ def main():
     c12 = TCanvas("monat_km", "MonatKMGelaufen",1200,1000)
     MakeMonthKMPlot(c12,day,2016,km5)
 
+    c13 = TCanvas("zeitprokm", "zeitprokm",1200,1000)
+    MakeMPKPlot(c13,vel5)
+
     c10 = TCanvas("LBLcomp", "LBL comparison",1200,1000)
     MakeLBLPlot(c10,day,vel5)
 

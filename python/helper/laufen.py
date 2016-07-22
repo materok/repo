@@ -339,7 +339,7 @@ def MakeLBLPlot(canvas,day,velo):
 
 
 
-def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.005):
+def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01):
 
     x_run=np.zeros(len(day))
     xerr=np.zeros(len(day))
@@ -359,8 +359,8 @@ def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.005):
             y_run[i]=stats[i]
             yerr_run[i]=yerr[i]
         y_bmi[i]=stats[i]/(height**2)
-        #~ yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2+(2*height_err/height)**2)
-        yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2)
+        yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2+(2*height_err/height)**2)
+        #~ yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2)
     canvas.Divide(2)
     canvas.cd(1)
     graph = TGraphErrors(len(day),day,stats,xerr,yerr)
@@ -400,4 +400,23 @@ def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.005):
     SavePlotPNG(canvas,"wunsch"+canvas.GetTitle())
     SavePlotPDF(canvas,"wunsch"+canvas.GetTitle())
 
+def MakeMPKPlot(canvas,velo):
 
+    ROOT.gStyle.SetOptStat(1111)
+    xmax=int(60./min(velo))+1
+    if abs(xmax-60./min(velo))>0.5:
+        xmax-=0.5
+    xmin=int(60./max(velo))
+    if abs(xmin-60./max(velo))>0.5:
+        xmin+=0.5
+    temp=xmax-xmin
+    multi=12
+    binx=int((temp)*multi)
+    histogram = TH1D("h", "", binx, xmin, xmax)
+    histogram.SetTitle(";Zeit pro KM;Eintraege")
+    for item in velo:
+        histogram.Fill(60./item)
+    histogram.Draw()
+    SavePlotPNG(canvas,canvas.GetTitle())
+    SavePlotPDF(canvas,canvas.GetTitle())
+    ROOT.gStyle.SetOptStat(0)
