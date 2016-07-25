@@ -47,6 +47,31 @@ def dayToMonth(day,year):
         i+=1
     return counter,j+1
 
+def SetDayAxis(histo,day,year):
+
+    j=0
+    k=1
+    first=True
+    Labels=["January","February","March","April","May","June","July","August","Oktober","September","November","Dezember"]
+    for i in range(1,367):
+        if i < min(day):
+            continue
+        elif i > max(day):
+            break
+        if first==True:
+            if dayToMonth(i,year)[1]!=j+1:
+                j=dayToMonth(i,year)[1]-1
+                k=int(min(day)/20)+1
+            first=False
+        if dayToMonth(i,year)==(1,j+1):
+            histo.GetXaxis().SetBinLabel(histo.GetXaxis().FindBin(i),Labels[j])
+            j+=1
+        elif i==20*k:
+            histo.GetXaxis().SetBinLabel(histo.GetXaxis().FindBin(i),str(i))
+            k+=1
+            if k==6 or k==9:
+                k+=1
+
 
 def calcVelo(distance,time): #distance and time are arrays
 
@@ -134,7 +159,7 @@ def SavePlotJPG(Canvas,Title,Path="../plots/"):
 def SavePlotPNG(Canvas,Title,Path="../plots/"):
     Canvas.SaveAs(Path+Title+".png")
 
-def MakeBPMPlots(canvas,day,bpm,option="avg"):
+def MakeBPMPlots(canvas,day,bpm,option="avg",year=2016):
 
     graph = TGraph(len(day),day,bpm)
     graph = TGraph(len(day),day,bpm)
@@ -144,17 +169,18 @@ def MakeBPMPlots(canvas,day,bpm,option="avg"):
         graph.SetTitle("max. Herzfrequenz;Tag;max. Herzfrequenz im bpm")
     Markers(graph,4,21)
     graph.Draw("AP")
+    SetDayAxis(graph,day,year)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
-def MakeFourPlots(canvas,day,time,velo):
+def MakeFourPlots(canvas,day,time,velo,year=2016):
 
     gr1 = TGraphErrors(len(time),day,time,np.zeros(len(day)),TimeError(time))
     gr1.SetTitle("Laufzeiten;Tag;Zeit in min")
     f1 = TF1("f1","[0]+[1]*x", 0, 500)
     f1.SetParameters(34,-0.5)
-    gr1.Fit("f1", "R")
+    #~ gr1.Fit("f1", "R")
     gStyle.SetOptFit(1111)
 
     gr2 = TGraphErrors(len(day),day,velo,np.zeros(len(day)),VelError(velo))
@@ -192,11 +218,13 @@ def MakeFourPlots(canvas,day,time,velo):
     canvas.cd(4).SetGrid()
     gr4.Draw("AP")
     f2.Draw("SAME")
+    for graph in Graphs:
+        SetDayAxis(graph,day,year)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
-def MakeCumulPlot(canvas,day,distance):
+def MakeCumulPlot(canvas,day,distance,year=2016):
 
     func = TF1("f2","[0]+[1]*x", 0, 500)
     func.SetParameters((int(day[-1]/7)+1)*20,0)
@@ -213,19 +241,21 @@ def MakeCumulPlot(canvas,day,distance):
     tex.SetTextAlign(11)
     tex.SetTextSize(0.05)
     tex.DrawLatex(0.44,0.1,string)
+    SetDayAxis(graph,day,year)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
     print "ich bin schon ", cumulDist[-1]," km gelaufen"
     print "ich haette ", func.GetParameter(0)," km laufen sollen"
 
-def MakePercPlot(canvas,day):
+def MakePercPlot(canvas,day,year=2016):
 
     perc=percentage(day)
     graph = TGraph(len(day),day,perc)
     graph.SetTitle("Lauf Prozent;Nummer des Tages; Prozent")
     Markers(graph,1,8)
     graph.Draw("AP")
+    SetDayAxis(graph,day,year)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
@@ -347,7 +377,7 @@ def MakeMonthKMPlot(canvas,day,year,dist):
     SavePlotPDF(canvas,canvas.GetTitle())
 
 
-def MakeLBLPlot(canvas,day,velo):
+def MakeLBLPlot(canvas,day,velo,year=2016):
 
     length=5.555
     const=50./2100.
@@ -358,12 +388,13 @@ def MakeLBLPlot(canvas,day,velo):
     graph.SetTitle("auf LBL umgerechnete Zeit;Nummer des Tages; Zeit in Min")
     graph.SetMarkerStyle(21)
     graph.Draw("AP")
+    SetDayAxis(graph,day,year)
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
 
 
 
-def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01):
+def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01,year=2016):
 
     x_run=np.zeros(len(day))
     xerr=np.zeros(len(day))
@@ -400,6 +431,8 @@ def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01):
     bmi_graph.SetTitle(";Nummer des Tages; BMI in #frac{kg}{m^{2}}")
     Markers(bmi_graph,1,8)
     bmi_graph.Draw("AP")
+    for graphs in [graph,bmi_graph]:
+        SetDayAxis(graphs,day,year)
     canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
@@ -441,6 +474,7 @@ def MakeMPKPlot(canvas,velo):
     for item in velo:
         histogram.Fill(60./item)
     histogram.Draw()
+    canvas.Update()
     SavePlotPNG(canvas,canvas.GetTitle())
     SavePlotPDF(canvas,canvas.GetTitle())
     ROOT.gStyle.SetOptStat(0)
