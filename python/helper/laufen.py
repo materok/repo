@@ -15,7 +15,7 @@ def mean(array):
 
 def var(array):
 
-    res=moment(array,moment(array,0,1,1),1,2)
+    res=moment(array,moment(array,0,1,1),1,2)*len(array)/(len(array)-1)
     return res
 
 def tConvert(time):
@@ -409,6 +409,8 @@ def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01,year=2016):
             yerr[i]=var(stats[:5])**.5
         else:
             yerr[i]=var(stats[i-5:i])**.5
+            if yerr[i]<0.1:
+                yerr[i]=0.1
         if day[i] in day_run:
             x_run[i]=day[i]
             y_run[i]=stats[i]
