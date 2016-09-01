@@ -226,10 +226,20 @@ def MakeFourPlots(canvas,day,time,velo,year=2016):
 
 def MakeCumulPlot(canvas,day,distance,year=2016):
 
+    import datetime
+    today = datetime.date.today()
+    lastRun = datetime.date(year,dayToMonth(day[-1],year)[1],dayToMonth(day[-1],year)[0])
+    diff = today -lastRun
+
     func = TF1("f2","[0]+[1]*x", 0, 500)
     func.SetParameters((int(day[-1]/7)+1)*20,0)
     canvas.SetGrid()
     cumulDist= makeCumul(distance)
+
+    if diff.days!=0:
+        day=np.append(day,day[-1]+diff.days)
+        cumulDist=np.append(cumulDist,cumulDist[-1])
+
     graph = TGraph(len(day),day,cumulDist)
     graph.SetTitle("Laufstrecke;Nummer des Tages;Strecke gelaufen")
     Markers(graph)
@@ -337,6 +347,14 @@ def MakeMonthPlot(canvas,day,year):
 
 def MakeMonthKMPlot(canvas,day,year,dist):
 
+    import datetime
+    today = datetime.date.today()
+    lastRun = datetime.date(year,dayToMonth(day[-1],year)[1],dayToMonth(day[-1],year)[0])
+    diff = today -lastRun
+
+    if diff.days!=0:
+        day=np.append(day,day[-1]+diff.days)
+        dist=np.append(dist,0)
 
     ROOT.gStyle.SetOptStat(0)
     Labels=["January","February","March","April","May","June","July","August","Oktober","September","November","Dezember"]
@@ -362,7 +380,8 @@ def MakeMonthKMPlot(canvas,day,year,dist):
     else:
         print "something strange is going on, could not find case"
     multi=1/multi
-    histogram1.Fill(dayToMonth(day[-1],year)[1]-1,histogram.GetBinContent(i)*multi)
+
+    histogram1.Fill(dayToMonth(day[-1],year)[1]-1,histogram.GetBinContent(today.month)*multi)
     leg=TLegend(0.7,0.8,0.9,0.9)
     leg.AddEntry(histogram,"data","l")
     leg.AddEntry(histogram1,"prognosis","l")
