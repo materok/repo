@@ -8,11 +8,11 @@ from helper.laufen import *
 def main():
 
     t5,km5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
-    day=new_arr(day)
+    day=day.astype('d')
     gew,day1= np.genfromtxt('../stats.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
-    gew=new_arr(gew)
-    day1=new_arr(day1)
+    gew=gew.astype('d')
+    day1=day1.astype('d')
 
     c1 = TCanvas("gewicht","gewicht",200,9,1400,500)
     MakeStats(c1,day1,gew,day)

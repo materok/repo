@@ -436,14 +436,14 @@ def MakeStats(canvas,day,stats,day_run,height=1.70,height_err=0.01,year=2016):
             yerr_run[i]=yerr[i]
         y_bmi[i]=stats[i]/(height**2)
         yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2+(2*height_err/height)**2)
-        #~ yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2)
+        #~ yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/stats[i])**2
     canvas.Divide(2)
     canvas.cd(1)
     graph = TGraphErrors(len(day),day,stats,xerr,yerr)
     graph.SetTitle(";Nummer des Tages; Gewicht in kg")
     Markers(graph,1,8)
     graph.Draw("AP")
-    graph_run = TGraphErrors(len(day_run),x_run,y_run,xerr,yerr_run)
+    graph_run = TGraphErrors(len(x_run),x_run,y_run,xerr,yerr_run)
     Markers(graph_run,3,8)
     graph_run.Draw("same P")
     canvas.Update()
