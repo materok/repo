@@ -8,9 +8,7 @@ from helper.laufen import *
 def main():
 
     #km5,t5,bpm,day,km1,t1,km2,t2,km3,t3,km4,t4= np.genfromtxt('data.txt', unpack=True)
-    t5,km5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
-    #km5 and t5 are complete distance traveled and time needed
-    #bpm=new_arr(bpm)
+    minute,second,km,bpm,bpm_max,day,month,year= np.genfromtxt('../../dataLight2.txt', unpack=True)
     bpm=bpm.astype('d')
     bpm_max=bpm_max.astype('d')
     day=day.astype('d')
@@ -61,7 +59,7 @@ def main():
     c10 = TCanvas("LBLcomp", "LBL comparison",1200,1000)
     MakeLBLPlot(c10,day,vel5)
 
-    gew,day1= np.genfromtxt('../stats.txt', unpack=True)
+    gew,day1= np.genfromtxt('../../stats.txt', unpack=True)
     gew=gew.astype('d')
     day1=day1.astype('d')
 

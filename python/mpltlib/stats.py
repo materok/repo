@@ -7,9 +7,9 @@ from helper.laufen import *
 #from datetime import date
 def main():
 
-    t5,km5,bpm,bpm_max,day= np.genfromtxt('../dataLight.txt', unpack=True)
+    t5,km5,bpm,bpm_max,day= np.genfromtxt('../../dataLight.txt', unpack=True)
     day=day.astype('d')
-    gew,day1= np.genfromtxt('../stats.txt', unpack=True)
+    gew,day1= np.genfromtxt('../../stats.txt', unpack=True)
     #km5 and t5 are complete distance traveled and time needed
     gew=gew.astype('d')
     day1=day1.astype('d')
