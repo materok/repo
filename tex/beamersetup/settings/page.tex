@@ -1,0 +1,70 @@
+%% Theme
+%\usetheme{Berkeley} % theme for slides
+\usetheme{Frankfurt}
+%\usetheme{Madrid}
+%\usetheme{Warsaw}
+%\usetheme{Berlin}
+%\usetheme{Darmstadt}
+%\usetheme{Goettingen}
+
+
+%% Colors
+%\usecolortheme{rose} % color for slides
+\usecolortheme{default}
+%\definecolor{c1}{rgb}{0,0.7,0.6} % some green
+%\definecolor{c2}{rgb}{0.9,0.9,0.9} % some gray
+%% see http://www.sharelatex.com/learn/Beamer
+%\setbeamercolor*{palette primary}{fg=white,bg=c1} % upper part
+%\setbeamercolor*{palette secondary}{bg=c2} % left part (background)
+%\setbeamercolor*{sidebar left}{fg=white,bg=c1} % left part with links
+%\setbeamerfont{section number projected}{ % section numbers
+%  family=\rmfamily,
+%  series=\bfseries,
+%  size=\normalsize
+%  }
+%\setbeamercolor{section number projected}{bg=c1} % color of section numbers and others (fg: Fontm, bg:Hintergrund)
+%\setbeamercolor{item projected}{bg=c1}
+%\setbeamercolor{itemize item}{fg=c1}
+%\setbeamercolor{author in sidebar}{fg=white}
+%\setbeamercolor{footlinecolor}{fg=black,bg=c2}
+
+%% Fonts
+\usefonttheme{professionalfonts} % changes fonts
+
+%% Foot
+
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{footline}{fg=blue}
+
+\setbeamerfont{page number in head/foot}{size=\footnotesize}
+
+%\addtobeamertemplate{navigation symbols}{}{%
+%    \usebeamerfont{footline}%
+%    \usebeamercolor[fg]{footline}%
+%    \hspace{1em}%
+%    \insertframenumber/\inserttotalframenumber
+%}
+
+%% adding framenumbering near shorttitle; useful for warsaw theme
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill%
+  \insertframenumber\,/\,\inserttotalframenumber}
+
+\usenavigationsymbolstemplate{} % deafult controls off
+%\setbeamertemplate{footline}[frame number] % slide number at the bottom
+%\setbeamertemplate{footline}
+%{%
+%	\leavevmode%
+%	\hbox{%
+%	\begin{beamercolorbox}[wd=.3\paperwidth,ht=5ex,dp=1.5ex,left,leftskip=2mm]{footlinecolor}%
+%		Foot information on the left over several lines
+%	\end{beamercolorbox}%
+%	\begin{beamercolorbox}[wd=.5\paperwidth,ht=5ex,dp=1.5ex,left,leftskip=2mm]{footlinecolor}%
+%		Next foot part
+%	\end{beamercolorbox}%
+%	\begin{beamercolorbox}[wd=.2\paperwidth,ht=5ex,dp=1.5ex,right,rightskip=2mm]{footlinecolor}%
+%		\insertframenumber{} / \inserttotalframenumber%
+%	\end{beamercolorbox}%
+%	}%
+%	\vskip0pt%
+%}

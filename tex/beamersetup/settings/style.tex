@@ -1,0 +1,55 @@
+\usetheme{default}
+\beamertemplatenavigationsymbolsempty
+\hypersetup{pdfpagemode=UseNone}
+
+
+\usecolortheme{default}
+%% Fonts
+\usefonttheme{professionalfonts} % changes fonts
+
+
+
+
+%% colors
+\definecolor{foreground}{RGB}{255,255,255}
+\definecolor{background}{RGB}{0,0,0}
+\definecolor{title}{RGB}{0,0,200}
+\definecolor{backuptitle}{RGB}{107,174,214}
+\definecolor{subtitle}{RGB}{70,130,180}
+\definecolor{name}{RGB}{150,150,150}
+
+\setbeamercolor{titlelike}{fg=title}
+\setbeamercolor{subtitle}{fg=subtitle}
+\setbeamercolor{author}{fg=title}
+\setbeamercolor{date}{fg=subtitle}
+\setbeamercolor{institute}{fg=subtitle}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{item}{fg=title} % color of bullets
+\setbeamercolor{subitem}{fg=subtitle}
+\setbeamercolor{itemize/enumerate subbody}{fg=black}
+\setbeamertemplate{itemize subitem}{{\textendash}}
+\setbeamerfont{itemize/enumerate subbody}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate subitem}{size=\footnotesize}
+
+%% Foot
+
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{footline}{fg=blue}
+\setbeamerfont{page number in head/foot}{size=\large}
+
+%\expandafter\def\expandafter\insertshorttitle\expandafter{%
+%  \insertshorttitle\hfill%
+%  \insertframenumber\,/\,\inserttotalframenumber}
+\defbeamertemplate{footline}{higher page number}
+	{%  
+		\vspace{-10pt}
+		\usebeamercolor[name]{page number in head/foot}%
+		\usebeamerfont{page number in head/foot}%
+		\insertframenumber/\inserttotalframenumber%
+	}
+\defbeamertemplate{footline}{no page number}
+{%
+}
+\setbeamertemplate{footline}[no page number]
+
+\usenavigationsymbolstemplate{} % deafult controls off

@@ -1,0 +1,44 @@
+%intro:
+%-show outline of talk
+
+%\section{Outline}
+
+
+\subsection{Limits}
+
+\begin{frame}{Limit Setting}
+%   thingy
+        \begin{textblock}{15}(0.5,3) %{width}(x,y)
+            used tool: Higgs combine tool \\
+            supported CMSSW version: 7.4.x\\
+            calculated limit: Bayesian (asymptotic also possible)\\
+            needed input: Datacard (in backup) or root file with $m_T$ distribution and systematically shifted $m_T$ distributions\\[.75cm]
+
+
+            systematics currently used in electron channel:\\
+            shape based ($m_T$ distribution):\\
+            Ele Energy Scale \hspace{3cm} Jet Energy Resolution\\
+            Jet Energy Scale\hspace{3cm} Electron ID Uncertainty\\
+            kFactor Uncertainty \hspace{3cm} Pileup Uncertainty\\
+            Statistic Uncertainty\hspace{3cm} trigger scale factor\\[.25cm]
+            scalar uncertainty:\\
+            lumi \hspace{5cm} qcd\_uncertainty\\
+
+
+        \end{textblock}
+        \begin{textblock}{15}(0.5,15) %{width}(x,y)
+        %[1]{see \tiny\url{https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideHiggsAnalysisCombinedLimit}}
+        \end{textblock}
+\end{frame}
+\begin{frame}{Limit Setting (cont.)}
+%   thingy
+        \begin{textblock}{15}(0.5,3) %{width}(x,y)
+            current procedure for bayesian limits:\\[1cm]
+            calculate asymptotic limit to get a good estimate for r parameter\\[0.5cm]
+            use rmax=2r (for frequentist: rmax=5r, factors determined by Klaas)\\[0.5cm]
+            use rmax parameter to calculate bayesian limit\\[0.5cm]
+            number of toys depends on time frame for limit\\[0.5cm]
+            limits shown are diced with $\mathcal{O}(500)$ toys\\
+            used runs for limit: B to G
+        \end{textblock}
+\end{frame}
