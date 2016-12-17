@@ -119,11 +119,18 @@ def makeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
                       'Oktober','November', 'December']
     labels=[]
     x_ticks=[]
-    for i in range(len(x)):
-        j,k= dayToMonth(x[i],year)
+    #for i in range(len(x)):
+        #j,k= dayToMonth(x[i],year)
+        #if j==1:
+            #labels.append(possibleLabels[k-1])
+            #x_ticks.append(x[i])
+        #else:
+            #labels.append('')
+    for day in x:
+        j,k= dayToMonth(day,year)
         if j==1:
             labels.append(possibleLabels[k-1])
-            x_ticks.append(x[i])
+            x_ticks.append(day)
         else:
             labels.append('')
     counter=0
