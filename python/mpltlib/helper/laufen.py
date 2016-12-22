@@ -43,6 +43,17 @@ def dayToMonth(day,year):
         i+=1
     return counter,j+1
 
+def convertDayToBin():
+    # [january,febuary,march,april,may,june,july,august,september,oktober,november,december]
+    month=[31,28,31,30,31,30,31,31,30,31,30,31]
+    if year%4==0:
+        month[1]=month[1]+1
+    month=makeCumul(month)
+    binNumber=np.array([],'d')
+    for i,j in izip(days,in_month):
+        binNumber=np.append(binNumber, j+i-1)
+    return binNumber
+
 def tConvert(time):
 
     time_new=np.array([],'d')
