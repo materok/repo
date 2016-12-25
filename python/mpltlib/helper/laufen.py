@@ -43,6 +43,23 @@ def dayToMonth(day,year):
         i+=1
     return counter,j+1
 
+def dayAndMonthToBin(day,month,year):
+    # [january,febuary,march,april,may,june,july,august,september,oktober,november,december]
+    monthDict={1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+    dayDict={}
+    if year%4==0:
+        monthDict[2]+=1
+
+    for key,val in monthDict.iteritems():
+		if key ==1:
+			dayDict[key]=0
+		else:
+			dayDict[key]=dayDict[key-1]+monthDict[key]
+    binNumbers=np.array([],'d')
+    for entryDay,entryMonth in zip(day,month):
+		binNumbers=np.append(binNumbers,entryDay+dayDict[entryMonth])
+    return binNumbers
+
 def convertDayToBin():
     # [january,febuary,march,april,may,june,july,august,september,oktober,november,december]
     month=[31,28,31,30,31,30,31,31,30,31,30,31]
@@ -113,7 +130,7 @@ def VelError(velo):
     return errors
 
 
-def makeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
+def MakeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
 
     plt.figure(figsize=(20,10))
     xRun=np.zeros(len(y))
@@ -144,6 +161,80 @@ def makeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
             x_ticks.append(day)
         else:
             labels.append('')
+    counter=0
+    for i in range(len(y)):
+        if i < 5:
+            yerr[i]=var(y[:5])**.5
+        else:
+            yerr[i]=var(y[i-5:i])**.5
+            if yerr[i]<0.1:
+                yerr[i]=0.1
+        if x[i] in runX:
+            counter+=1
+            xRun_temp[i]=x[i]
+            yRun_temp[i]=y[i]
+            yerrRun_temp[i]=yerr[i]
+        y_bmi[i]=y[i]/(height**2)
+        yerr_bmi[i]=y_bmi[i]*np.sqrt((yerr[i]/y[i])**2+(2*height_err/height)**2)
+    xRun=np.array([],'d')
+    yRun=np.array([],'d')
+    yRun_bmi=np.array([],'d')
+    for i in range(len(xRun_temp)):
+        if xRun_temp[i]>0:
+            xRun=np.append(xRun,xRun_temp[i])
+            yRun=np.append(yRun,yRun_temp[i])
+            yRun_bmi=np.append(yRun_bmi,yRun_temp[i]/(height**2))
+    plt.subplot(121)
+    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o')
+    plt.plot(xRun, yRun, 'rs')
+    plt.xlabel("month")
+    plt.xticks(x, labels, rotation='vertical')
+    plt.subplots_adjust(bottom=0.175)
+    plt.ylabel("weight in kg")
+    plt.subplot(122)
+    plt.errorbar(x, y_bmi, xerr=0.25, yerr=yerr_bmi, fmt='o')
+    plt.plot(xRun, yRun_bmi, 'rs')
+    plt.xlabel("month")
+    plt.xticks(x, labels, rotation='vertical')
+    plt.subplots_adjust(bottom=0.175)
+    plt.ylabel("bmi")
+    SavePlot(x,year,"stats")
+    if show==True: plt.show()
+
+def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.01,show=False):
+
+    plt.figure(figsize=(20,10))
+    xRun=np.zeros(len(y))
+    x=dayAndMonthToBin(day,month,year)
+    runX=dayAndMonthToBin(runDay,runMonth,year)
+    yRun=np.zeros(len(y))
+    yerrRun=np.zeros(len(y))
+    yerr=np.zeros(len(y))
+    y_bmi=np.zeros(len(y))
+    yerr_bmi=np.zeros(len(y))
+    xRun_temp=np.zeros(len(x))
+    yRun_temp=np.zeros(len(y))
+    yerrRun_temp=np.zeros(len(y))
+    possibleLabels = ['January', 'Febuary', 'March', 'April',
+                      'May','June','July','August','September',
+                      'Oktober','November', 'December']
+    labels=[]
+    x_ticks=[]
+    #for i in range(len(x)):
+        #j,k= dayToMonth(x[i],year)
+        #if j==1:
+            #labels.append(possibleLabels[k-1])
+            #x_ticks.append(x[i])
+        #else:
+            #labels.append('')
+    for i in range(len(month)):
+        if (month[i]==month[i-1]) and i != 0:
+            labels.append('')
+        else:
+			#print "month", month[i]
+			#print len(possibleLabels)
+            labels.append(possibleLabels[int(month[i])-1])
+            x_ticks.append(day[i])
     counter=0
     for i in range(len(y)):
         if i < 5:
