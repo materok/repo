@@ -26,6 +26,14 @@ def delta(arr):
         arr_new= np.append(arr_new, arr[i]-arr[i-1] )
     return arr_new
 
+def fillEmpty(array):
+    if len(array)>0:
+        temp=array[0]
+        for i,item in enumerate(array):
+            if item==-1:
+                array[i]=temp
+            else:
+                temp=item
 
 def dayToMonth(day,year):
     # [january,febuary,march,april,may,june,july,august,september,oktober,november,december]
@@ -51,13 +59,13 @@ def dayAndMonthToBin(day,month,year):
         monthDict[2]+=1
 
     for key,val in monthDict.iteritems():
-		if key ==1:
-			dayDict[key]=0
-		else:
-			dayDict[key]=dayDict[key-1]+monthDict[key]
+        if key ==1:
+            dayDict[key]=0
+        else:
+            dayDict[key]=dayDict[key-1]+monthDict[key]
     binNumbers=np.array([],'d')
     for entryDay,entryMonth in zip(day,month):
-		binNumbers=np.append(binNumbers,entryDay+dayDict[entryMonth])
+        binNumbers=np.append(binNumbers,entryDay+dayDict[entryMonth])
     return binNumbers
 
 def convertDayToBin():
@@ -103,14 +111,22 @@ def makeCumul(distance): #distance is an array
         distanceCumul=np.append(distanceCumul,cumul)
     return distanceCumul
 
-def percentage(day): #day is an array
+def percentage(day,month=[],year=2017): #day is an array
 
     n=0.
     perc_arr=np.array([],'d')
-    for run in day:
-        n+=1
-        perc=n/run*100
-        perc_arr=np.append(perc_arr,perc)
+    if year==2016:
+        for run in day:
+            print run
+            n+=1
+            perc=n/run*100
+            perc_arr=np.append(perc_arr,perc)
+    else:
+        binNumbers=dayAndMonthToBin(day,month,year)
+        for run in binNumbers:
+            n+=1
+            perc=n/run*100.
+            perc_arr=np.append(perc_arr,perc)
     return perc_arr
 
 def TimeError(time):
@@ -231,8 +247,8 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
         if (month[i]==month[i-1]) and i != 0:
             labels.append('')
         else:
-			#print "month", month[i]
-			#print len(possibleLabels)
+            #print "month", month[i]
+            #print len(possibleLabels)
             labels.append(possibleLabels[int(month[i])-1])
             x_ticks.append(day[i])
     counter=0
@@ -307,12 +323,13 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
 
     cumulDist= makeCumul(distance)
 
+    print day
     if diff.days!=0:
         day=np.append(day,day[-1]+diff.days)
         cumulDist=np.append(cumulDist,cumulDist[-1])
 
     plt.plot(day,cumulDist,marker="+")
-    maxVal=(int(day[-1]/7)+1)*20
+    maxVal=(int(day[-1]/7.)+1)*20
     x1,x2,y1,y2 = plt.axis()
     plt.axis((x1,x2,0,maxVal+20))
     plt.axhline(maxVal, color='r')
@@ -322,9 +339,10 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
     SavePlot(day,year,"cumul")
     if show==True: plt.show()
 
-def MakePercPlot(day,year=2016,show=False):
+def MakePercPlot(day,month,year=2016,show=False):
 
-    perc=percentage(day)
+    perc=percentage(day,month,year)
+    print perc
     plt.plot(day,perc,marker="+")
     plt.title("Lauf Prozent")
     plt.xlabel("Nummer des Tages")
