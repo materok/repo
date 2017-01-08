@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from helper.laufen import *
 
 def main(version=17):
