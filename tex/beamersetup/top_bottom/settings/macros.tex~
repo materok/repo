@@ -1,0 +1,16 @@
+\newcommand{\cm}[1]{{\tt \textcolor{orange}{#1}}}
+\newcommand{\wl}[2]{\href{#2}{\textcolor{blue}{#1}}}
+\newcommand{\att}[2]{\href{#2}{\textcolor{blue}{#1}}}
+\newcommand{\PS}{PS$_{90}$ }
+% \newcommand{\W}{W$^{'}_{static}$ }
+% \newcommand{\WM}{W$^{'}_{M_T}$ }
+\newcommand{\WM}{W$^{\prime}_{M_T}$ }
+\newcommand{\W}{W$^{\prime}_{static}$ }
+\newcommand{\Supervisor}{Prof. Dr. Lehrach}
+\newcommand{\MT}{M$_T$}
+\newcommand{\MET}{$E_T^{miss}$}
+\newcommand{\pt}{p$_T$}
+\newcommand{\MTT}{M$_\text{T2}$}
+\newcommand{\HT}{H$_\text{T}$}
+\newcommand{\mht}{H$_\text{T}^{miss}$}
+%\newcommand{\pt}{p$_T$}

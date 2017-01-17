@@ -1,0 +1,11 @@
+
+\author[Marcel Materok]{Marcel Materok}
+\title[LHC]{LHC and the LHC acceleration chain}
+%\titlegraphic{\includegraphics[height=1.1cm]{src/logo.png} \hspace{0.5cm} \includegraphics[height=1.1cm]{src/CMScol.pdf}}
+%\titlegraphic{\includegraphics[height=1.1cm]{src/RWTH-Logo.png}}
+%\titlegraphic{\includegraphics[width=0.2\textwidth]{src/RWTH-Logo.png} ~ \includegraphics[width=0.1\textwidth]{src/CMScol.pdf} }
+
+
+\institute{Supervised by: \Supervisor\\Phys. Inst. III B, RWTH Aachen \& Phys. Inst. III, FZ Jülich}
+\date{Aachen, den \today}
+\frame{\titlepage}

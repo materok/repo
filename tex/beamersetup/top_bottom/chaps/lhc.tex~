@@ -1,0 +1,310 @@
+
+
+\begin{frame}
+ 
+	\tableofcontents[sections={1-3}, currentsection, subsectionstyle=hide/hide]
+			\begin{textblock}{8}(1.25,4.5)
+				\checkmark
+			\end{textblock}
+			\begin{textblock}{8}(1.25,6.25)
+				\checkmark
+			\end{textblock}
+\end{frame}
+
+\subsection{sps}
+\begin{frame}{SPS}
+		\visible{
+		\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+	%		\includegraphics[width=\textwidth]{src/ps_schema}
+		\end{textblock}
+		\begin{textblock}{8}(7.75,5.25) %{width}(x,y)
+			\includegraphics[width=\textwidth]{src/basis}
+		\end{textblock}
+		\begin{textblock}{8}(.25,6.5) %{width}(x,y)
+			8  400.8 MHz RF cavities per beam\\
+			1232 dipolemagnets\\
+			392  quadropole magnets\\
+			688  sextupole magnets\\
+			168  octupole magnets\\
+			10$^{11}$ protons per bunch
+		\end{textblock}
+		\begin{textblock}{16}(0.05,3) %{width}(x,y)
+			\textbf{L}arge \textbf{H}adron \textbf{C}ollider (LHC)\\
+			26659m circumference synchrotron used accelerate 13 SPS fills (2808 bunches) to 6.5 TeV
+		\end{textblock}
+		\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+			%hydrogen bottle with duoplasmatron
+		\end{textblock}
+		\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+			\begin{turn}{270}
+			%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+			\end{turn}
+		\end{textblock}
+		\begin{textblock}{13}(15.75,6.75) %{width}(x,y)
+			\begin{turn}{270}
+				{\fontsize{4}{10} \selectfont \url{http://www.lhc-facts.ch/index.php?page=allgemeines}}
+			\end{turn}
+		\end{textblock}
+		\begin{textblock}{9}(8,5) %{width}(x,y)
+		\end{textblock}
+		}
+\end{frame}
+
+\subsection{currents in the lhc}
+\begin{frame}{Currents in the LHC}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/currents_LHC}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(1.5,6.75) %{width}(x,y)
+					\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{http://cds.cern.ch/record/1165534/}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsection{procedure at the lhc}
+\begin{frame}{Procedure at the LHC}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/lhc_cycle}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsection{energy equivalent of 7TeV}
+\begin{frame}{energy equivalent of 7TeV}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+
+\subsection{damage potential of high energy beams}
+\subsubsection{damage potential of high energy beams}
+\begin{frame}{Damage Potential of high Energy Beams}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsubsection{damage potential of high energy beams cont.}
+\begin{frame}{Damage Potential of high Energy Beams (cont.)}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsection{beam dumps}
+\begin{frame}{Beam Dumps}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsection{Luminosity}
+\subsubsection{luminosity}
+\begin{frame}{Luminosity}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}
+
+\subsubsection{luminosity cont.}
+\begin{frame}{Luminosity (cont.)}
+		\visible{
+				\begin{textblock}{7.5}(8.25,5.5) %{width}(x,y)
+			%		\includegraphics[width=\textwidth]{src/ps_schema}
+				\end{textblock}
+				\begin{textblock}{13}(1.75,2.75) %{width}(x,y)
+					\includegraphics[width=\textwidth]{src/damage}
+				\end{textblock}
+				\begin{textblock}{8}(8.25,12.5) %{width}(x,y)
+					
+				\end{textblock}
+				\begin{textblock}{16}(.25,3) %{width}(x,y)
+				\end{textblock}
+				\begin{textblock}{7.5}(.25,3.5) %{width}(x,y)
+					%hydrogen bottle with duoplasmatron
+				\end{textblock}
+				\begin{textblock}{13}(15.75,3.75) %{width}(x,y)
+					\begin{turn}{270}
+					%	{\fontsize{4}{10} \selectfont \url{http://webs.mn.catholic.edu.au/physics/emery/assets/hsc_qu2.gif}}
+					\end{turn}
+				\end{textblock}
+				\begin{textblock}{13}(2.5,15.75) %{width}(x,y)
+				%	\begin{turn}{90}
+						{\fontsize{4}{10} \selectfont \url{https://indico.cern.ch/event/6238/contributions/1223840/attachments/1004628/1429028/HCSS-June07-partB.pdf}}
+		%			\end{turn}
+				\end{textblock}
+				\begin{textblock}{9}(8,5) %{width}(x,y)
+				\end{textblock}
+	}
+\end{frame}

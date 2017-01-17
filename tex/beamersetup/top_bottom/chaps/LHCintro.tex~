@@ -1,0 +1,53 @@
+\begin{frame}
+ 
+	\tableofcontents[sections={1-1}, currentsection, subsectionstyle=hide/hide]
+\end{frame}
+
+\begin{frame}{Why build the LHC?}
+		\visible{
+		\begin{textblock}{10}(.5,2.5) %{width}(x,y)
+			\includegraphics[height=.95\textheight]{src/had}\\ 
+		\end{textblock}
+		\begin{textblock}{2}(0,2.5) %{width}(x,y)
+			\begin{turn}{90}
+			 {\fontsize{4}{10} \selectfont \url{http://www.collegehumor.com/post/6340023/if-ikea-made-instructions-for-everything}}
+			\end{turn}
+
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{What is the LHC?}
+		\visible{
+		\begin{textblock}{10}(.5,2.5) %{width}(x,y)
+			easy to build: use Ikea set:\\
+			\includegraphics[height=.85\textheight]{src/had}\\ 
+		\end{textblock}
+		\begin{textblock}{2}(0,2.5) %{width}(x,y)
+			\begin{turn}{90}
+			 {\fontsize{4}{10} \selectfont \url{http://www.collegehumor.com/post/6340023/if-ikea-made-instructions-for-everything}}
+			\end{turn}
+
+		\end{textblock}
+		\begin{textblock}{10}(6,3) %{width}(x,y)
+			\only<2,3>{\centering maybe not as easy\\ considering just the size of $\approx$27km\\}
+			\only<3>{\includegraphics[width=.95\textwidth]{src/LHC}}
+			\only<2>{\includegraphics[width=.95\textwidth]{src/lhc_1}}
+		\end{textblock}
+		\begin{textblock}{2}(15.75,4.5) %{width}(x,y)
+			\begin{turn}{270}
+			 {\fontsize{4}{10} \selectfont 
+			\only<3>{\url{http://ts-dep.web.cern.ch/ts-dep/groups/lea/int/workshops/}}
+			\only<2>{\url{http://www.ee.washington.edu/faculty/hauck/LargeHadronCollider/}}}
+			\end{turn}
+		\end{textblock}
+	%	\begin{textblock}{10}(.5,2.5) %{width}(x,y)
+	%		\includegraphics[height=.95\textheight]{src/lhc}\\ 
+	%	\end{textblock}
+	%	\begin{textblock}{2}(0,2.5) %{width}(x,y)
+	%		\begin{turn}{90}
+	%		 {\fontsize{4}{10} \selectfont \url{http://www.ee.washington.edu/faculty/hauck/LargeHadronCollider/}}
+	%		\end{turn}
+	%	\end{textblock}
+	}
+\end{frame}
