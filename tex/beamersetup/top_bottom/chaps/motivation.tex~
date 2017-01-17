@@ -1,0 +1,193 @@
+\section{Motivation}
+\subsection{SM moti}
+\begin{frame}{Motivation}
+	\visible{
+		\begin{textblock}{7}(0.25,3)
+			Standard Model of Particle Physics
+			\begin{itemize}
+				\item around since 1970's
+				\item describe particles and interactions
+				\item<2> does not describe everything
+			\end{itemize}
+		\end{textblock}
+		\begin{textblock}{8}(7.5,3) %{width}(x,y)
+			\includegraphics[width=\textwidth]{src/v1_1.pdf}
+		\end{textblock}
+	} 
+	\only<2>{	
+		\begin{textblock}{7}(0,8.5) %{width}(x,y)
+			\includegraphics[width=\textwidth]{src/test1.pdf}
+			\tiny	\\ \hfill adapted from DOI 10.1046/j.1365-8711.2000.03075.x
+		\end{textblock}
+		\begin{textblock}{5}(7.5,12) %{width}(x,y)
+			\huge $\Rightarrow$ \normalsize dark matter
+		\end{textblock}
+	}
+\end{frame}
+\subsection{hierachy}
+\begin{frame}{Hierachy problem}
+	\visible{
+		\begin{textblock}{15}(0.5,4) %{width}(x,y)
+			\centering
+			\onslide<1->{Higgs boson is needed to give mass to matter\\
+			Higgs boson mass is sensitve to every particle coupling to Higgs field\\
+			Vacuum expectation value $<\text{H}>=\sqrt{-\frac{m_H^2}{2\lambda}}\approx$246~GeV\\
+			$\Rightarrow$ $m_H^2$ is $\mathcal{O}$((-100~GeV)$^2$ )\\}
+			\onslide<2->{quantum corrections from loops $\Delta m_H^2 \propto m_{particle}^2$ $\Rightarrow$ especially sensitive to third generation or any heavy particle\\
+\only<2>{\includegraphics[width=.3\textwidth]{src/Higgs-1.png}
+~\includegraphics[width=.3\textwidth]{src/Higgs-2.png}~
+\includegraphics[width=.3\textwidth]{src/Higgs-3.png}\\
+\tiny{taken from \url{http://inspirehep.net/record/1376958/plots}}
+}
+}
+			\onslide<3->{ 
+			For scalar: $\Delta m_H^2 = \frac{\lambda_S}{16\pi^2} [ \Lambda^2_{UV} -2 m_S^2 ln(\frac{\Lambda^2_{UV}}{m_S}  ) ] $
+			For fermion: $\Delta m_H^2 = C_H T_F (\frac{g^2}{16\pi^2})^2 [a\Lambda^2_{UV} +24 m_F^2 ln(\frac{\Lambda_{UV}}{m_F}  ) ]$
+			
+			$ \Rightarrow$ theory not correct for high energy scale $\Lambda$ or finetuning required\\
+			which is considered unnatural
+			}
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{Hierachy problem cont.}
+				\visible{
+		\begin{textblock}{15}(0.5,6) %{width}(x,y)
+\centering
+			problematic if new high mass particles exist\\
+			in QFT: bosonic contributions cancel ferminonic ones, thus in order to cancel every contribution: $n_B=n_F$\\
+			not described by Standard Model of Particle Phyics $\rightarrow$ Extensions\\
+			\large $\Rightarrow$ \textbf{Supersymmetrie!} (commonly called SUSY)\\
+			\normalsize every particle as a superpartner (indicated by $\sim$) differing in spin by 1/2
+			\\simplest case of SUSY: Minimal Supersymmetric Standard Model (MSSM)
+
+		\end{textblock}
+	}
+\end{frame}
+\subsection{susy theory}
+\begin{frame}
+\visible{
+\begin{textblock}{16}(0,2)
+\centering
+\includegraphics[width=.8\textwidth]{src/SM-SUSY-diagram.jpg}
+
+\tiny{taken from\\ \url{http://www.quantumdiaries.org/2012/12/10/gluino-higgsino-bingo-2/}}
+\end{textblock}
+}
+\end{frame}
+
+\subsection{symmetry breaking}
+\begin{frame}
+\visible{
+\begin{textblock}{16}(0,2)
+\centering
+If SUSY was unbroken, superpartner would have same mass\\
+we should see them\visible<2>{, but dont! $\rightarrow$ SUSY is broken\\}
+\includegraphics[width=.45\textwidth]{src/exactsusysm.png}~
+\visible<2>{\includegraphics[width=.45\textwidth]{src/mssm1.png}}\\
+\tiny{taken from \\ \url{http://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/}}
+\end{textblock}
+}
+\end{frame}
+
+\begin{frame}{particle content of the MSSM}
+\visible{
+\begin{textblock}{16}(0,2.5) %{width}(x,y)
+\centering
+\begin{tabular}{c|c|c|c|c}
+names & abbreviation& spin0 & spin 1/2 & SU(3)$_C$, SU(2)$_L$, U(1)$_Y$ \\\hline\hline
+(s)quarks&q& $\tilde{\text{u}}_L$, $\tilde{\text{d}}_L$ & u$_L$ d$_L$ &(3,2,$\frac{1}{6}$)\\\hline
+&$\bar{\text{u}}$& $\tilde{\text{u}}_R^*$ & u$_R^\dag$ &($\bar{3}$,1,-$\frac{2}{3}$)\\\hline
+&$\bar{\text{d}}$&  $\tilde{\text{d}}_R^*$ & d$_R^\dag$ &($\bar{3}$,1,$\frac{1}{3}$)\\\hline
+(s)leptons&l&($\tilde{\nu}_l$, $\tilde{l}_L$)&($\nu_l$, $l_L$)&(1,2,-$\frac{1}{2}$)\\\hline
+&$\bar{l}$&$\tilde{l}_R$*&$l^\dag_R$&(1,1,1)\\\hline
+Higgs(inos)&H$_u$&(H$_\text{u}^+$ H$_\text{u}^0$)&($\tilde{H}_\text{u}^+$ $\tilde{H}_\text{u}^0$)&(1,2,+$\frac{1}{2}$)\\\hline
+&H$_d$&(H$_\text{d}^0$ H$_\text{d}^-$)&($\tilde{H}_\text{d}^0$ $\tilde{H}_\text{d}^-$)&(1,2,-$\frac{1}{2}$)
+\end{tabular}
+\\
+\begin{tabular}{c|c|c|c}
+ names &  spin0 & spin 1/2 & SU(3)$_C$, SU(2)$_L$, U(1)$_Y$ \\\hline\hline
+gluino,gluon& $\tilde{g}$&g&(8,1,0)\\\hline
+winos, W bosons& $\tilde{W}^\pm$ $\tilde{W}^0$&W$^\pm$ W$^0$ &(1,3,0)\\\hline
+binos, B boson& $\tilde{B}^0$ &B$^0$ &(1,1,0)\\\hline
+\end{tabular}\\
+$\tilde{W}^\pm$ and $\tilde{H}^\pm$ mix into chargino mass eigenstates $\tilde{\chi}^\pm_{1}$ and $\tilde{\chi}^\pm_{2}$\\
+$\tilde{B}^0$, $\tilde{W}^0$ mix into $\tilde{\gamma}$ and $\tilde{Z}^0$\\
+$\tilde{\gamma}$ and $\tilde{Z}^0$ mix with $\tilde{H}^0$ into \color{red}neutralino \color{black} mass eigenstates $\tilde{\chi}^0_{i}$, $i\in[1,4]$
+\end{textblock}
+}
+\end{frame}
+
+\subsection{P$_R$ and LSP}
+\begin{frame}{P$_R$ and LSP}
+\visible{
+\begin{textblock}{15}(.5,2.5)
+\centering
+Lightest Supersymmetric Particle (LSP): stable in P$_R$ conserving models\\
+$\tilde{\chi}_1^0$ is LSP in many models and possible dark matter candidate (as it is stable, has no charge and high mass)
+\\P$_R = (-1)^{3B+L+2s}$ for B being the baryon number, L the lepton number and s the spin\\
+SM particles have R-parity +1, SUSY particles R-parity -1\\
+why is it needed?\\
+Without P$_R$ or in R-parity violating (RPV) models proton lifetime would be of order $\mathcal{O}(10^{-2}s)$ (could be extended to 1a)\\
+\includegraphics[width=.5\textwidth]{src/p2kgravitino.png}
+\tiny{\\from \url{http://inspirehep.net/record/1211198}\\}
+\end{textblock}
+
+}
+\end{frame}
+
+
+\subsection{hierachy}
+\begin{frame}{MSSM}
+	\visible{
+		\begin{textblock}{15}(0.5,5) %{width}(x,y)
+\centering
+			Supersymmetric extension leads to 124 independent, physical parameters\\
+			19 are analogous to SM and 105 new parameters\\
+			%\begin{itemize}
+			%\item<4-> 8: gaugino/higgsino sector
+			%\begin{itemize}
+			%\item<4|only@4> five real parameters 
+			%\item<4|only@4> three CP-violating phases 
+			%\end{itemize}
+			%\item<5->21: squark and slepton masses
+			%\item<6->36: real mixing angles \only<6>{defining squark and slepton mass eigenstates}
+			%\item<7->40: CP-violating phases \only<7>{can appear in squark and slepton interactions}
+			%\end{itemize}}
+			%\only<8->{MSSM does not describe electroweak symmetry breaking\\
+			%additional models are required
+			%\centering{}
+			
+			using different assumptions parameters can be reduced further:\\
+\begin{itemize}
+	\item Phenomenological MSSM (pMSSM): 19 parameters
+	\item Gauge-mediated supersymmetry breaking (GSMB) inspired models such as minimal GMSB (mGSMB): 5 parameters
+	\item Gravity-mediated supersymmetry breaking (cMSSM or mSUGRA: minimal supergravity): 5 parameters
+\end{itemize}
+but in analyses more often used: simplified models
+		\end{textblock}
+	}
+\end{frame}
+
+\subsection{simplified models}
+\begin{frame}{simplified models}
+\visible{
+\begin{textblock}{15}(.5,3)
+\centering
+
+simplified models are NO full theory!\\
+in P$_R$ conserving processes:\\ (pair-)production of a few SUSY particles and their (short) decay cascades\\
+usually resulting in stable LSP\\
+mostly used for gluino, squark, chargino or neutralino production\\
+free parameters: width $\Gamma$ and mass m of the particles (less restricting)\\
+\includegraphics[width=.4\textwidth]{src/fig_02.png}\\
+\tiny from: \url{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PUBNOTES/ATL-PHYS-PUB-2013-011/}
+\end{textblock}
+}
+\end{frame}
+
+
+
+
+

@@ -1,0 +1,426 @@
+%\begin{appendix}
+\appendix
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+\begin{frame}
+ \huge BACKUP
+\end{frame}
+
+\begin{frame}{MSSM}
+	\visible{
+		\begin{textblock}{15}(0.5,3) %{width}(x,y)
+		\centering
+$v = \frac{\left|\mu\right|}{\sqrt{\lambda}}=\frac{2M_W}{g}=246$~GeV\\
+defines electroweak scale\\
+\tiny from \url{http://www2.ph.ed.ac.uk/~playfer/PPlect17.pdf}
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{MSSM}
+	\visible{
+		\begin{textblock}{15}(0.5,3) %{width}(x,y)
+			supersymmetric extension leads to 105+45 free parameters\\
+			either conserving\only<1>{: gauge couplings, higgsino mass and Higgs-fermion coupling constants} 
+			\only<2->{or breaking the symmetry}\only<2>{: masses of gauginos, (squared) squark and slepton masses, A parameter (trilinear interaction terms), squared masses of scalar Higgs}\only<3->{\\
+			BUT: not all parameters are physical $\rightarrow$ can be reduced to 124 independent parameters\\
+			19 are analogous to SM and 105 new parameters\\}
+			%\begin{itemize}
+			%\item<4-> 8: gaugino/higgsino sector
+			%\begin{itemize}
+			%\item<4|only@4> five real parameters 
+			%\item<4|only@4> three CP-violating phases 
+			%\end{itemize}
+			%\item<5->21: squark and slepton masses
+			%\item<6->36: real mixing angles \only<6>{defining squark and slepton mass eigenstates}
+			%\item<7->40: CP-violating phases \only<7>{can appear in squark and slepton interactions}
+			%\end{itemize}}
+			%\only<8->{MSSM does not describe electroweak symmetry breaking\\
+			%additional models are required
+			\only<3->{MSSM does not describe electroweak symmetry breaking\\
+			additional models are required
+			%\centering{}
+			}
+			
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{SM Parameter}
+	\visible{
+		\begin{textblock}{15}(0.5,3) %{width}(x,y)
+18 free parameters
+			\begin{itemize}
+			 \item finestructure constant $\alpha$ 
+\item Weinberg angle $\Theta_w$  (determines the relationship between the coupling constant of electromagnetism and that of the weak interaction)
+\item The coupling constant $g_3$ of the strong interaction;
+\item The electroweak symmetry breaking energy scale (or the Higgs potential vacuum expectation value, v.e.v.) v
+\item The Higgs potential coupling constant $\lambda$ or alternatively, the Higgs mass $m_H$
+\item The three mixing angles $\Theta_{12}$, $\Theta_{23}$ and $\Theta_{13}$ and the CP-violating phase $\delta_{13}$ of the Cabibbo-Kobayashi-Maskawa (CKM) matrix, which determines how quarks of various flavor can mix when they interact
+\item Nine Yukawa coupling constants that determine the masses of the nine charged fermions (six quarks, three charged leptons)
+			\end{itemize}
+Note: 15/18 related to Higgs boson
+			
+			
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{SM Parameter}
+	\visible{
+		\begin{textblock}{15}(0.5,3) %{width}(x,y)
+
+additional parameters:
+$\Theta_3$, which would characterize the CP symmetry violation of the strong interaction.
+Pontecorvo-Maki-Nakagawa-Sakata (PMNS) matrix: three neutrino masses m1, m2 and m3, and the three angles $\Theta_{12}$, $\Theta_{23}$ and $\Theta_{13}$ (not to be confused with the CKM angles above) plus the CP-violating phase $\delta_{CP}$ of the PMNS matrix.
+
+
+\tiny{taken from \url{https://spinor.info/weblog/?p=6355}}
+26 parameters	
+			
+			
+		\end{textblock}
+	}
+\end{frame}
+
+
+\begin{frame}{cMSSM}
+	\visible{
+
+		\begin{textblock}{10}(3,4)
+		M$_1$(M$_2$, M$_3$) = bino (wino, gluino) mass term\\
+		m$_{1/2}$=M$_1$=M$_2$=M$_3$\\
+		m$_0^2$=m$_{H_u}^2$=m$_{H_d}^2$\\
+		A$_0$\\
+		tan$\beta$\\
+		sgn$\mu_0$
+		\end{textblock}
+
+	}
+\end{frame}
+
+	%	\only<1>{SRA, N$_b$=0\\ \includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_002-a.pdf}\\ good agreement between data and background  }
+	%	\only<2>{SRA, N$_b \geq$1\\ \includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_002-b.pdf}\\ good agreement between data and background  }
+	%	\only<3>{ATLAS-like, N$_b$=0\\ \includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_002-e.pdf}\\ good agreement between data and background  }
+
+
+\begin{frame}{CMS-SUS-15-002}
+	\visible{
+		\begin{textblock}{8}(0,5)
+			Event selection: 
+			\begin{itemize}
+			 \item event: \MET{} $>$ 30~GeV
+			 \item jet: 
+			\begin{itemize}
+				\item \pt{} $>$ 30~GeV; 20~GeV for b-jet
+				\item $\left| \eta \right|<$ 2.5
+				\item loose jet requirements on composition
+				\item $\Delta\phi_{min}$(\MET, leading 4 jets)$>$0.3)
+			\end{itemize}
+			 \item imbalance $\frac{ \left| \vec{E}^{miss}_T -\vec{H}^{miss}_T \right| }{E^{miss}_T} <$ 0.5
+			\end{itemize}
+			
+		\end{textblock}
+		\begin{textblock}{8.5}(8,3)
+		 \onslide<1->{signal regions:
+			\begin{itemize}
+			 \item 5 bins in \HT{} ($>$ 200~GeV)
+			 \item 11 bins in N$_J$ ($>$ 2) and N$_b$ ($\geq$ 0)
+			 \item topological regions: for each of the 55 bins, fill 22 \MTT{} bins
+			\end{itemize}
+		}
+		\only<1>{\includegraphics[width=.9\textwidth]{src/CMS-PAS-SUS-15-003_Figure_007-a}
+		}
+		%\onslide<4>{\includegraphics[width=.9\textwidth]{src/CMS-PAS-SUS-15-003_Figure_007-b}
+		%}
+		\end{textblock}
+
+	}
+\end{frame}
+
+
+
+\begin{frame}{\MTT}
+	\begin{textblock}{10}(3,3)
+	\centering
+\includegraphics[width=.9\textwidth]{src/fig2.pdf}
+	\end{textblock}
+	
+	\begin{textblock}{16}(0,14)
+	\centering
+		 pp$\rightarrow X+\tilde{l}^+\tilde{l}^- \rightarrow X + l^+l^-\tilde{\chi}^0_1\tilde{\chi}^0_1$
+		\\produced with m$_{\tilde{l}}$ = 157.1~GeV and m$_{\tilde{\chi}}$ = 121.1~GeV
+		\end{textblock}
+\end{frame}
+
+\begin{frame}{CMS-SUS-15-003}
+	\visible{
+		\begin{textblock}{16}(0,3)
+			\centering
+			data used: $\mathcal{L}_{int}$=2.2~fb$^{-1}$, $\sqrt{s}$=13~TeV\\
+			3 triggers: \HT{} and \MET{} dependent thresholds
+			
+		\end{textblock}
+		\begin{textblock}{10}(0,6)
+			backgrounds:
+			\begin{itemize}
+			 \item<1-> 'lost lepton'
+			 \begin{itemize}
+			  \item<1|only@1> W+jets
+			  \item<1|only@1> t$\bar{\text{t}}$+jets
+			  \item<1|only@1> lepton out of acceptance, not reconstructed, not identifier or not isolated
+			  \item<1|only@1> estimated with lepton control sample by inverting lepton veto in each topological region
+			 \end{itemize}
+			  \item<2-> 'irreducible'
+			\begin{itemize}
+			 \item<2|only@2> Z+jets
+			  \item<2|only@2> most similar topology
+			 \item<2|only@2> decreases in importance with increasing N$_b$
+			 \item<2|only@2> estimated with $\gamma$+jets control sample in each topological region
+			\end{itemize}
+			\item<3-> 'instrumental background'
+			\begin{itemize}
+			 \item<3|only@3> QCD multi-jet with no real \MET{}
+			 \item<3|only@3> enter by significant jet mismeasurement or sources of anomalous noise.
+			 \item<3|only@3> suppressed by event selection
+			 \item<3|only@3> estimated by inverting $\Delta\phi_{min}$ requirement in each topological region
+			\end{itemize}
+			 %\item<3-> mostly data-driven estimates
+			\end{itemize}
+		\end{textblock}
+		\begin{textblock}{6.5}(9.75,5)
+		\only<3>{\includegraphics[width=.9\textwidth]{src/gluonfd.png} \\ \tiny adapted from \\\url{http://oer.physics.manchester.ac.uk/NP/Notes/Notes/Notesse54.xht}}
+		\only<2>{\includegraphics[width=\textwidth]{src/figures_p28_fig10_1}\\ \tiny adapted from \url{https://inspirehep.net/record/1082043/plots}}
+		\only<1>{\includegraphics[width=\textwidth]{src/ttLJT} \\ \tiny adapted from \url{https://inspirehep.net/record/871832/plots}}
+		\end{textblock}
+
+	}
+\end{frame}
+
+\begin{frame}{search regions \MTT}
+	\visible{
+		\begin{textblock}{16}(0,4.5) %{width}(x,y)
+			\centering
+			5 bins in \HT{} ($>$ 200~GeV)\\
+			11 bins in N$_J$ ($>$ 2) and N$_b$ ($\geq$ 0)\\
+			 topological regions: for each of the 55 bins, fill 22 \MTT{} bins
+		\end{textblock}
+	}
+\end{frame}
+
+\begin{frame}{CMS-SUS-15-011}
+	\visible{
+		\begin{textblock}{16}(0,2.5)
+			\centering
+			\color{black} data used: $\mathcal{L}_{int}$=2.2~fb$^{-1}$, $\sqrt{s}$=13~TeV\\
+			2 triggers with different \pt{} threshold\\
+			lepton \pt{} $>$ 20~GeV
+			
+		\end{textblock}
+		\begin{textblock}{9.75}(0,6)
+			\visible<1->{backgrounds:}
+\begin{itemize}
+ \item<1-> Flavour-symmetric (FS) \only<1>{produce opposite flavour pairs ($e^\pm \mu^\mp$) as often as same flavour pair ($e^\pm e^\mp$ or $ \mu^\pm \mu^\mp$)}
+\begin{itemize}
+	\item<2|only@2> \color{violet}t$\bar{\text{t}}$\color{black}
+	\item<2|only@2> \color{blue}WW\color{black}
+	\item<2|only@2> Z/$\gamma$* ($\rightarrow \tau\tau$)
+	\item<2|only@2> \color{blue}tW\color{black}
+	\item<2|only@2> \color{blue}single top production\color{black}
+	\item<2|only@2> lepton from hadron decay
+	\item<2|only@2> hadron misidentified as lepton
+	\item<3|only@3> symmetry might be distorted (e.g. trigger, reco, ID)
+	\item<3|only@3> estimate opposite flavor contribution from same flavor contribution
+	\item<3|only@3> multiplicative factor R$_{SF/OF}$
+	\item<3|only@3> direct measurement in control region (enriched)
+	\item<3|only@3> measurement of lepton efficiencies
+\end{itemize}
+\item<4-> Drell-Yan-like (DY) \only<4>{flavour-correlated}
+\begin{itemize}
+	\item<4|only@4> \color{blue}DY+jets \color{black}(\MET{} from mismeasurement of jets)
+	\item<4|only@4> \color{blue}WZ\color{black}
+	\item<4|only@4> \color{blue}ZZ\color{black}
+	\item<4|only@4> t$\bar{\text{t}}$Z
+	\item<5|only@5> \MET{} for DY derived from template
+	\item<5|only@5> assumption: \MET{} from detector resolution (jets recoil from Z)
+	\item<5|only@5> control sample of $\gamma$ +jets
+	\item<5|only@5> \MET{} for rest from MC
+\end{itemize}
+
+\end{itemize}
+
+		\end{textblock}
+		\begin{textblock}{6.5}(9.75,5)
+			\only<1-3>{\includegraphics[width=\textwidth]{src/qq.png}\\ \tiny adapted from \url{https://hep.pa.msu.edu/wiki/Computing/MadEvent}}
+			\visible<4->{\includegraphics[width=\textwidth]{src/drell-yan-feyn.pdf}\\ \tiny adapted from \url{http://inspirehep.net/record/943750/plots}}
+		\end{textblock}
+
+		\begin{textblock}{6.5}(9.75,14)
+			\footnotesize
+			\only<2,4>{\color{blue} MadGraph5\_aMC@NLO\color{black}\\
+			\color{violet} POWHEG \color{black}}
+		\end{textblock}
+	}
+\end{frame}
+\begin{frame}{On-Z search}
+	\visible{
+		\begin{textblock}{8}(0,4)
+			3 signal regions with subregions:
+\begin{itemize}
+\item<1-> SRA
+\begin{itemize}
+\item<2|only@2> low jet-multiplicity (2 or 3)
+\item<2|only@2> number of b-tagged jets N$_b$
+\item<2|only@2> \HT{} ($>$ 400~GeV)
+\item<2|only@2> \MET{} ($>$ 100~GeV)
+\end{itemize}
+\item<1-> SRB
+\begin{itemize}
+\item<3|only@3> high jet-multiplicity ($\geq$ 4)
+\item<3|only@3> number of b-tagged jets N$_b$
+\item<3|only@3> \HT
+\item<3|only@3> \MET{} ($>$100~GeV)
+\end{itemize}
+\item<1-> 'ATLAS-like' region
+\begin{itemize}
+\item<4|only@4> requirement on \HT{}+\pt$^{l_1}$+\pt$^{l_2}$
+\item<4|only@4> \MET{} ($>$225~GeV)
+\item<4|only@4> $\Delta\phi_{\text{\MET},j_1,j_2}$ ($>$ 0.4)
+\item<4|only@4> $\Delta$R between leptons $>$ 0.1 
+\end{itemize}
+\end{itemize}
+
+		\end{textblock}
+		\begin{textblock}{8}(8,4)
+		 \centering
+		 ATLAS 3$\sigma$ excess in 8~TeV data
+		 \only<1,2>{\includegraphics[width=\textwidth]{src/fig_12a.pdf}}
+		 \visible<3->{\includegraphics[width=\textwidth]{src/fig_12b.pdf}}
+		\end{textblock}
+
+	}
+\end{frame}
+
+
+\begin{frame}{Off-Z search}
+	\visible{
+		\begin{textblock}{8}(0,4)
+			2 regions with subregions:
+			for both regions: \MET{} $>$ 150(100)~GeV for N$_{jets} >=$2(3)
+\begin{itemize}
+\item central{: Both leptons in $\left|\eta\right|<$1.4}
+\item forward{: At least one lepton in $\left|\eta\right|>$1.4}
+\begin{itemize}
+\item number of b-tagged jets N$_b$
+\begin{itemize}
+\item<1|only@1> =0
+\item<1|only@1> $\geq$1
+\item<1|only@1> $\geq$0 (inclusive, for comparability with 8~TeV data)
+\end{itemize}
+\item m$_{ll}$
+\begin{itemize}
+\item<2> 20-70~GeV
+\item<2> 70-81~GeV
+\item<2> 81-101~GeV
+\item<2> 101-120~GeV
+\item<2> $>$ 120~GeV
+\end{itemize}
+
+\end{itemize}
+
+\end{itemize}
+
+		\end{textblock}
+		\begin{textblock}{8}(8,4)
+		 \centering
+		 CMS 2.6$\sigma$ excess in 8~TeV data
+		 \only<1>{\includegraphics[width=\textwidth]{src/Fixed_Edge_sbottom_neutralino2_Exclusion_witXsecLimit.pdf}}
+		 \only<2>{\includegraphics[width=\textwidth]{src/Fixed_Neutralino_sbottom_neutralino2_Exclusion_witXsecLimit.pdf}}
+		\end{textblock}
+
+	}
+\end{frame}
+
+
+\begin{frame}{result on-Z}
+	\visible{
+		\begin{textblock}{8}(7,3)
+
+		\only<1>{\centering SRB, N$_b$=0\\ \includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_002-c.pdf}\\ good agreement between data and background within the uncertainties}
+		%\only<2>{\centering SRB, N$_b \geq$1\\ \includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_002-d.pdf}\\ good agreement between data and background\\
+		%	 except for \MET{} $\in$ (225~GeV,300~GeV)}
+		%\only<2>{\includegraphics[width=\textwidth]{src/fig_06c.pdf}\\\tiny from \url{http://cds.cern.ch/record/2000717}}
+	%	\only<4>{\includegraphics[width=\textwidth]{src/fig_06d.pdf}}
+		\end{textblock}
+
+		\begin{textblock}{6}(.5,3)
+		\visible<1->{GSMB model predicts many jets\\
+		SRB is most sensitive\\}
+		\only<1>{\includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_005.pdf}\\
+		%\only<3,4>{\includegraphics[width=\textwidth]{src/CMS-PAS-SUS-15-011_Figure_005.pdf}\\
+		}
+		\end{textblock}
+
+		\begin{textblock}{10}(.5,15)
+		\tiny plots from CMS PAS SUS-15-011
+		\end{textblock}
+	}
+\end{frame}
+
+
+\begin{frame}{edge 8~TeV limits}
+	\visible{
+
+		\begin{textblock}{10}(3,4)
+		 \centering
+		 CMS 2.6$\sigma$ excess in 8~TeV data
+		 \only<1>{\includegraphics[width=\textwidth]{src/Fixed_Edge_sbottom_neutralino2_Exclusion_witXsecLimit.pdf}}
+		 \only<2>{\includegraphics[width=\textwidth]{src/Fixed_Neutralino_sbottom_neutralino2_Exclusion_witXsecLimit.pdf}}
+		\end{textblock}
+
+	}
+\end{frame}
+
+\begin{frame}
+	\visible{  
+		\begin{textblock}{7}(.25,5) %{width}(x,y)
+			\includegraphics[width=\textwidth]{src/nature14474-f2}
+			\\ $\mathcal{B}(\text{B}_{\text{s}}^0 \rightarrow \mu^+\mu^-) = \frac{ \mathcal{B}_{\text{norm}} \epsilon_{\text{norm}} f_{\text{norm}}} { N_{\text{norm}} \epsilon_{\text{sig}} f_{\text{norm}}} \cdot N_{\text{B}_{\text{s}}^0 \rightarrow \mu^+\mu^-}$
+		\end{textblock}
+		\begin{textblock}{7}(8.75,5) %{width}(x,y)
+			\includegraphics[width=\textwidth]{src/nature14474-f3}
+			
+		\end{textblock}
+		
+		
+		\begin{textblock}{15}(6,2.5)
+		
+		
+		\end{textblock}
+
+		\begin{textblock}{15}(6,2.5)
+			\tiny pictures from \url{http://www.nature.com/nature/journal/v522/n7554/full/nature14474.html}
+		\end{textblock}
+			}
+			\end{frame}
+
+\begin{frame}{B$_{\text{s}}$ tan$\beta$=30}
+\visible{  
+	\begin{textblock}{12}(2,3) %{width}(x,y)
+	 2011 data: \\$\mathcal{B}_{\text{LHCb+CMS}} = 4.5\cdot 10^{-9}$
+	\\	\includegraphics[width=\textwidth]{src/cmssm_tb30.png}
+	\end{textblock}
+	
+	\begin{textblock}{2}(0.75,5) %{width}(x,y)
+		\includegraphics[width=\textwidth]{src/legend}		
+	\end{textblock}
+	\begin{textblock}{16}(0,1.5)
+		\centering 	\tiny plots from \url{http://arxiv.org/abs/1205.3099}
+	\end{textblock}
+}
+\end{frame}
+
+
+
+\setcounter{framenumber}{\value{finalframe}}
+%\end{appendix}
