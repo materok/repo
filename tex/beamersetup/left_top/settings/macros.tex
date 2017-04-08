@@ -1,13 +1,27 @@
 \newcommand{\head}[1]{
 %{\centering
-\begin{textblock}{15}(6,0.75) %{width}(x,y)
+\begin{textblock}{9}(1.5,0.) %{width}(x,y)
     {
 
         \color{title}
         \Large
+        {
+			\begin{center}
+				#1
+			\end{center}
 
-        #1
+		}
     }
 \end{textblock}
 %}
+}
+
+\newcommand{\MET}{
+	E$^{\mathrm{miss}}_{\mathrm{T}}$
+}
+\newcommand{\pt}{
+	p$_{\mathrm{T}}$
+}
+\newcommand{\mt}{
+	M$_{\mathrm{T}}$
 }
