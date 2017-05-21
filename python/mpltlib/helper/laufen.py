@@ -307,7 +307,6 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
 
     cumulDist= makeCumul(distance)
 
-    print day
     if diff.days!=0:
         day=np.append(day,day[-1]+diff.days)
         cumulDist=np.append(cumulDist,cumulDist[-1])
@@ -326,7 +325,6 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
 def MakePercPlot(day,month,year=2016,show=False):
 
     perc=percentage(day,month,year)
-    print perc
     plt.plot(day,perc,marker="+")
     plt.title("Lauf Prozent")
     plt.xlabel("Nummer des Tages")

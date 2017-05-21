@@ -22,9 +22,10 @@ def main(version=17):
         fillEmpty(sec)
         t5 =mins+sec/60.
         fillEmpty(month)
-        gew17,day17,month17= np.genfromtxt('../../stats17.txt', unpack=True)
+        day=dayAndMonthToBin(day,month,year)
+        gew17,day17,month17= np.genfromtxt('../../stats17.txt',missing_values=",", filling_values = -1, unpack=True)
         gew17/=10.
-        #MakeStats17(day17,month17,gew17,2017,show=True)
+        fillEmpty(month17)
         t5,t5min = tConvert(t5)
         vel5=calcVelo(km5,t5)
         MakePercPlot(day,month,year)
