@@ -311,6 +311,7 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
         day=np.append(day,day[-1]+diff.days)
         cumulDist=np.append(cumulDist,cumulDist[-1])
 
+    plt.figure(figsize=(10,10))
     plt.plot(day,cumulDist,marker="+")
     maxVal=(int(day[-1]/7.)+1)*20
     x1,x2,y1,y2 = plt.axis()
@@ -324,6 +325,8 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
 
 def MakePercPlot(day,month,year=2016,show=False):
 
+
+    plt.figure(figsize=(10,10))
     perc=percentage(day,month,year)
     plt.plot(day,perc,marker="+")
     plt.title("Lauf Prozent")
@@ -334,6 +337,7 @@ def MakePercPlot(day,month,year=2016,show=False):
 
 def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
 
+    plt.figure(figsize=(10,10))
     plt.plot(day,bpm,linestyle="",marker="x")
     adder=""
     if option=="avg":
