@@ -216,6 +216,8 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     xRun=np.zeros(len(y))
     x=dayAndMonthToBin(day,month,year)
     runX=dayAndMonthToBin(runDay,runMonth,year)
+    if year==2017:
+        runX=runDay
     yRun=np.zeros(len(y))
     yerrRun=np.zeros(len(y))
     yerr=np.zeros(len(y))
