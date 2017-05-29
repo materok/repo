@@ -6,7 +6,7 @@ def main(version=17):
     if version==16:
         t5,km5,bpm,bpm_max,day= np.genfromtxt('../../dataLight.txt', unpack=True)
         gew,day1= np.genfromtxt('../../stats.txt', unpack=True)
-        MakeStats(day1,gew,2016,day,show=True)
+        MakeStats(day1,gew,2016,day,show=True,savepng=True)
     elif version==17:
         mins,sec,km5,bpm,bpm_max,day,month= np.genfromtxt('../../dataLight17.txt',missing_values=",", filling_values = -1, unpack=True)
         t5 =mins+sec/60.
@@ -20,4 +20,5 @@ def main(version=17):
         MakeStats17(day17,month17,gew17,2017,show=True)
 
 if __name__=="__main__":
-    main()
+    main(16)
+    #main()

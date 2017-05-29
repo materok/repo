@@ -146,7 +146,7 @@ def VelError(velo):
     return errors
 
 
-def MakeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
+def MakeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False,savepng=False):
 
     plt.figure(figsize=(20,10))
     xRun=np.zeros(len(y))
@@ -207,10 +207,10 @@ def MakeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False):
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
     plt.ylabel("bmi")
-    SavePlot(x,year,"stats")
+    SavePlot(x,year,"stats",savepng)
     if show==True: plt.show()
 
-def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.01,show=False):
+def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.01,show=False,savepng=False):
 
     plt.figure(figsize=(20,10))
     xRun=np.zeros(len(y))
@@ -272,7 +272,7 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
     plt.ylabel("bmi")
-    SavePlot(x,year,"stats")
+    SavePlot(x,year,"stats",savepng)
     if show==True: plt.show()
 
 def MakeKMPlots(day,time,velo,year=2016,show=False):
@@ -351,10 +351,11 @@ def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
     SavePlot(day,year,adder.split(".")[0]+"bpm")
     if show==True: plt.show()
 
-def SavePlot(x,year,title):
+def SavePlot(x,year,title,savepng=False):
     today=dayToMonth(x[-1],year)
     adder=str(today[0])+"_"+str(today[1])+"_"+str(year)
     plt.savefig("../../plots/"+title+adder+".pdf")
+    if savepng: plt.savefig("../../plots/"+title+adder+".png")
 
 if __name__=="__main__":
     main()
