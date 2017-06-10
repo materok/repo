@@ -34,7 +34,7 @@ def main(version=17):
         MakeBPMPlots(day,bpm_max,option="max",year=year)
         MakeCumulPlot(day,km5,year)
         MakeKMPlots(day,t5min,vel5,year)
-        MakeStats17(day17,month17,gew17,year,runDay=day)
+        MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
 
 
 if __name__=="__main__":
