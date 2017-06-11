@@ -366,6 +366,7 @@ def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
 def SavePlot(x,year,title,savepng=False):
     today=dayToMonth(x[-1],year)
     adder=str(today[0])+"_"+str(today[1])+"_"+str(year)
+    plt.tight_layout()
     plt.savefig("../../plots/"+title+adder+".pdf")
     if savepng: plt.savefig("../../plots/"+title+adder+".png")
 
