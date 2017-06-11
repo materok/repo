@@ -277,6 +277,16 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     SavePlot(x,year,"stats",savepng)
     if show==True: plt.show()
 
+    plt.figure(figsize=(10,10))
+    plt.subplot(111)
+    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o')
+    plt.plot(xRun, yRun, 'rs')
+    plt.xlabel("month")
+    plt.xticks(x, labels, rotation='vertical')
+    plt.subplots_adjust(bottom=0.175)
+    plt.ylabel("weight in kg")
+    SavePlot(x,year,"singleStats",savepng)
+
 def MakeKMPlots(day,time,velo,year=2016,show=False):
 
 
