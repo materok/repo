@@ -29,6 +29,7 @@ def main(version=17):
         t5,t5min = tConvert(t5)
         vel5=calcVelo(km5,t5)
         print vel5
+        print 60./vel5
         MakePercPlot(day,month,year)
         MakeBPMPlots(day,bpm,year=year)
         MakeBPMPlots(day,bpm_max,option="max",year=year)
