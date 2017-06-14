@@ -20,5 +20,5 @@ def main(version=17):
         MakeStats17(day17,month17,gew17,2017,show=True)
 
 if __name__=="__main__":
-    main(16)
-    #main()
+    #main(16)
+    main()

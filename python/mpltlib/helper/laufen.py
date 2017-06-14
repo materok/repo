@@ -245,7 +245,7 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
             yerr[i]=var(y[i-5:i])**.5
             if yerr[i]<0.1:
                 yerr[i]=0.1
-        if x[i] in runX:
+        if int(x[i]) in [int(entry) for entry in runX]:
             counter+=1
             xRun_temp[i]=x[i]
             yRun_temp[i]=y[i]
