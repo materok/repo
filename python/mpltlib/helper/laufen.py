@@ -62,7 +62,7 @@ def dayAndMonthToBin(day,month,year):
         if key ==1:
             dayDict[key]=0
         else:
-            dayDict[key]=dayDict[key-1]+monthDict[key]
+            dayDict[key]=dayDict[key-1]+monthDict[key-1]
     binNumbers=np.array([],'d')
     for entryDay,entryMonth in zip(day,month):
         binNumbers=np.append(binNumbers,entryDay+dayDict[entryMonth])
@@ -85,7 +85,9 @@ def tConvert(time):
     time_min=np.array([],'d')
     for time_old in time:
         min=int(time_old)
-        sec=(time_old-min)/.6
+        print min
+        sec=(time_old-min)
+        print sec
         hour=(min+sec)/60
         timeInMin=(min+sec)
         time_new=np.append(time_new,hour)

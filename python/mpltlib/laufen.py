@@ -26,15 +26,15 @@ def main(version=17):
         gew17,day17,month17= np.genfromtxt('../../stats17.txt',missing_values=",", filling_values = -1, unpack=True)
         gew17/=10.
         fillEmpty(month17)
-        t5,t5min = tConvert(t5)
-        vel5=calcVelo(km5,t5)
+        #t5,t5min = tConvert(t5)
+        vel5=calcVelo(km5,t5/60)
         print vel5
         print 60./vel5
         MakePercPlot(day,month,year)
         MakeBPMPlots(day,bpm,year=year)
         MakeBPMPlots(day,bpm_max,option="max",year=year)
         MakeCumulPlot(day,km5,year)
-        MakeKMPlots(day,t5min,vel5,year)
+        MakeKMPlots(day,t5,vel5,year)
         MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
 
 
