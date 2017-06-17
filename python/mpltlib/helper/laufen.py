@@ -372,7 +372,8 @@ def MakeKMHPlot(day,dist,velo,year=2017,savepng=False,show=False):
     axHisty.yaxis.set_major_formatter(nullfmt)
 
     # now determine nice limits by hand:
-    binwidth = .25
+    #binwidth = .25
+    binwidth = 1
     highx = int(max(velo))+1+binwidth
     highy = max(dist)+1+binwidth
     lowx = int(min(velo))-binwidth
@@ -392,7 +393,17 @@ def MakeKMHPlot(day,dist,velo,year=2017,savepng=False,show=False):
     # the scatter plot:
     axScatter.scatter(velo, dist,c=colors)
     #axScatter.scatter(velo, dist)
-    axScatter.grid(color='r', linestyle='-', linewidth=2)
+
+    #setup gridspacing
+
+    from matplotlib.ticker import MultipleLocator
+    spacing = .25
+    minorLocator = MultipleLocator(spacing)
+    axScatter.yaxis.set_minor_locator(minorLocator)
+    axScatter.xaxis.set_minor_locator(minorLocator)
+
+    #axScatter.grid(color='r', linestyle='--', linewidth=.5, which = 'minor')
+    axScatter.grid(color='r', linestyle='-', linewidth=.5)
     axHistx.hist(velo, bins=binsx)
     axHisty.hist(dist, bins=binsy, orientation='horizontal')
 
