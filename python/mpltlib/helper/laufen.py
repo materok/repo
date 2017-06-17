@@ -339,7 +339,6 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
 
 def MakePercPlot(day,month,year=2016,show=False):
 
-
     plt.figure(figsize=(10,10))
     perc=percentage(day,month,year)
     plt.plot(day,perc,marker="+")
@@ -347,6 +346,64 @@ def MakePercPlot(day,month,year=2016,show=False):
     plt.xlabel("Nummer des Tages")
     plt.ylabel("Prozent")
     SavePlot(day,year,"perc")
+    if show==True: plt.show()
+
+def MakeKMHPlot(day,dist,velo,year=2017,savepng=False,show=False):
+
+    plt.figure(figsize=(8, 8))
+    from matplotlib.ticker import NullFormatter
+    nullfmt = NullFormatter()         # no labels
+
+    # definitions for the axes
+    left, width = 0.1, 0.65
+    bottom, height = 0.1, 0.65
+    bottom_h = left_h = left + width + 0.02
+
+    rect_scatter = [left, bottom, width, height]
+    rect_histx = [left, bottom_h, width, 0.2]
+    rect_histy = [left_h, bottom, 0.2, height]
+
+    axScatter = plt.axes(rect_scatter)
+    axHistx = plt.axes(rect_histx)
+    axHisty = plt.axes(rect_histy)
+
+    # no labels
+    axHistx.xaxis.set_major_formatter(nullfmt)
+    axHisty.yaxis.set_major_formatter(nullfmt)
+
+    # now determine nice limits by hand:
+    binwidth = .25
+    highx = int(max(velo))+1+binwidth
+    highy = max(dist)+1+binwidth
+    lowx = int(min(velo))-binwidth
+    lowy = int(min(dist))-binwidth
+
+    axScatter.set_xlim((lowx, highx))
+    axScatter.set_ylim((lowy, highy))
+
+    binsx = np.arange(lowx, highx+binwidth, binwidth)
+    binsy = np.arange(lowy, highy+binwidth, binwidth)
+
+    # setup colorcoding
+    hist, xedges, yedges = np.histogram2d(velo, dist, (binsx, binsy))
+    xidx = np.clip(np.digitize(velo, binsx), 0, hist.shape[0]-1)
+    yidx = np.clip(np.digitize(dist, binsy), 0, hist.shape[1]-1)
+    colors = hist[xidx-1, yidx-1]
+    # the scatter plot:
+    axScatter.scatter(velo, dist,c=colors)
+    #axScatter.scatter(velo, dist)
+    axScatter.grid(color='r', linestyle='-', linewidth=2)
+    axHistx.hist(velo, bins=binsx)
+    axHisty.hist(dist, bins=binsy, orientation='horizontal')
+
+    axHistx.set_xlim(axScatter.get_xlim())
+    axHisty.set_ylim(axScatter.get_ylim())
+
+    axScatter.set_xlabel("distance in km")
+    axScatter.set_ylabel("velocity in km/h")
+    axHistx.set_ylabel("#entries")
+    axHisty.set_xlabel("#entries")
+    SavePlot(day,year,"kmh",savepng=savepng,tight=False)
     if show==True: plt.show()
 
 def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
@@ -365,10 +422,10 @@ def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
     SavePlot(day,year,adder.split(".")[0]+"bpm")
     if show==True: plt.show()
 
-def SavePlot(x,year,title,savepng=False):
+def SavePlot(x,year,title,savepng=False,tight=True):
     today=dayToMonth(x[-1],year)
     adder=str(today[0])+"_"+str(today[1])+"_"+str(year)
-    plt.tight_layout()
+    if tight: plt.tight_layout()
     plt.savefig("../../plots/"+title+adder+".pdf")
     if savepng: plt.savefig("../../plots/"+title+adder+".png")
 

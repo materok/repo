@@ -31,6 +31,7 @@ def main(version=17):
         print vel5
         print 60./vel5
         MakePercPlot(day,month,year)
+        MakeKMHPlot(day,vel5,km5,year,savepng=True)
         MakeBPMPlots(day,bpm,year=year)
         MakeBPMPlots(day,bpm_max,option="max",year=year)
         MakeCumulPlot(day,km5,year)
