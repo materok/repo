@@ -9,6 +9,7 @@ def main(version=17):
         t5,t5min = tConvert(t5)
         vel5=calcVelo(km5,t5)
         MakeKMPlots(day,t5min,vel5)
+        MakeKMHPlot(day,vel5,km5,2016,savepng=True)
         MakeStats(day1,gew,2016,day)
         MakeBPMPlots(day,bpm)
         MakeBPMPlots(day,bpm_max,option="max")
@@ -41,3 +42,4 @@ def main(version=17):
 
 if __name__=="__main__":
     main()
+    #main(16)

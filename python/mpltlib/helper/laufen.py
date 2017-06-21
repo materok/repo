@@ -85,9 +85,7 @@ def tConvert(time):
     time_min=np.array([],'d')
     for time_old in time:
         min=int(time_old)
-        print min
         sec=(time_old-min)
-        print sec
         hour=(min+sec)/60
         timeInMin=(min+sec)
         time_new=np.append(time_new,hour)
