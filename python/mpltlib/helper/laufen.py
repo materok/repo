@@ -43,7 +43,7 @@ def dayToMonth(day,year):
     i=1
     counter=1
     j=0
-    while i<day:
+    while i<int(day):
         counter+=1
         if counter==month[j]+1:
             j+=1
