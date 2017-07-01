@@ -102,6 +102,17 @@ def calcVelo(distance,time): #distance and time are arrays
     vel=distance/time
     return vel
 
+def calcWeightUncert(y):
+    yerr=np.zeros(len(y))
+    for i in range(len(y)):
+        if i < 5:
+            yerr[i]=var(y[:5])**.5
+        else:
+            yerr[i]=var(y[i-5:i])**.5
+            if yerr[i]<0.1:
+                yerr[i]=0.1
+    return yerr
+
 def makeCumul(distance): #distance is an array
 
     distanceCumul=np.array([],'d')
@@ -279,13 +290,83 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
 
     plt.figure(figsize=(10,10))
     plt.subplot(111)
-    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o')
-    plt.plot(xRun, yRun, 'rs')
+    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
+    plt.plot(xRun, yRun, 'rs',zorder=5)
     plt.xlabel("month")
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
     plt.ylabel("weight in kg")
     SavePlot(x,year,"singleStats",savepng)
+
+def MakeCombinedStats(day,month,y,year,runDay=[],runMonth=[],show=False,savepng=False):
+
+    plt.figure(figsize=(20,10))
+    xRun=np.zeros(len(y))
+    x=dayAndMonthToBin(day,month,year)
+    runX=dayAndMonthToBin(runDay,runMonth,year)
+    if year==2017:
+        runX=runDay
+    yRun=np.zeros(len(y))
+    yerrRun=np.zeros(len(y))
+    yerr=np.zeros(len(y))
+    xRun_temp=np.zeros(len(x))
+    yRun_temp=np.zeros(len(y))
+    yerrRun_temp=np.zeros(len(y))
+    possibleLabels = ['January', 'Febuary', 'March', 'April',
+                      'May','June','July','August','September',
+                      'Oktober','November', 'December']
+    labels=[]
+    x_ticks=[]
+    for i in range(len(month)):
+        if (month[i]==month[i-1]) and i != 0:
+            labels.append('')
+        else:
+            labels.append(possibleLabels[int(month[i])-1])
+            x_ticks.append(day[i])
+    counter=0
+    for i in range(len(y)):
+        if i < 5:
+            yerr[i]=var(y[:5])**.5
+        else:
+            yerr[i]=var(y[i-5:i])**.5
+            if yerr[i]<0.1:
+                yerr[i]=0.1
+        if int(x[i]) in [int(entry) for entry in runX]:
+            counter+=1
+            xRun_temp[i]=x[i]
+            yRun_temp[i]=y[i]
+            yerrRun_temp[i]=yerr[i]
+    xRun=np.array([],'d')
+    yRun=np.array([],'d')
+    for i in range(len(xRun_temp)):
+        if xRun_temp[i]>0:
+            xRun=np.append(xRun,xRun_temp[i])
+            yRun=np.append(yRun,yRun_temp[i])
+    gew16,day16= np.genfromtxt('../../stats.txt', unpack=True)
+    xRun16,yRun16,yerr16=prep16Data(gew16,day16)
+    plt.figure(figsize=(10,10))
+    plt.subplot(111)
+    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=3,label="2017",color="blue")
+    plt.errorbar(day16, gew16, xerr=0.25, yerr=yerr16, fmt='o',zorder=1,label="2016",color="green")
+    plt.plot(xRun, yRun, 'rs',zorder=4)
+    plt.plot(xRun16, yRun16, 'rs',zorder=2)
+    plt.xlabel("month")
+    plt.xticks(x, labels, rotation='vertical')
+    plt.subplots_adjust(bottom=0.175)
+    plt.ylabel("weight in kg")
+    plt.legend()
+    SavePlot(x,year,"singleCombinedStats",savepng)
+
+def prep16Data(gew16,day16):
+    t5,km5,bpm,bpm_max,day= np.genfromtxt('../../dataLight.txt', unpack=True)
+    xRun16=np.array([],'d')
+    yRun16=np.array([],'d')
+    for i,d in enumerate(day16):
+        if d in day:
+            xRun16=np.append(xRun16,d)
+            yRun16=np.append(yRun16,gew16[i])
+    yerr16=calcWeightUncert(gew16)
+    return xRun16,yRun16,yerr16
 
 def MakeKMPlots(day,time,velo,year=2016,show=False):
 

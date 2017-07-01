@@ -31,13 +31,14 @@ def main(version=17):
         vel5=calcVelo(km5,t5/60)
         print vel5
         print 60./vel5
-        MakePercPlot(day,month,year)
-        MakeKMHPlot(day,vel5,km5,year,savepng=True)
-        MakeBPMPlots(day,bpm,year=year)
-        MakeBPMPlots(day,bpm_max,option="max",year=year)
-        MakeCumulPlot(day,km5,year)
-        MakeKMPlots(day,t5,vel5,year)
-        MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
+        #~ MakePercPlot(day,month,year)
+        #~ MakeKMHPlot(day,vel5,km5,year,savepng=True)
+        #~ MakeBPMPlots(day,bpm,year=year)
+        #~ MakeBPMPlots(day,bpm_max,option="max",year=year)
+        #~ MakeCumulPlot(day,km5,year)
+        #~ MakeKMPlots(day,t5,vel5,year)
+        #~ MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
+        MakeCombinedStats(day17,month17,gew17,year,runDay=day,savepng=True)
 
 
 if __name__=="__main__":
