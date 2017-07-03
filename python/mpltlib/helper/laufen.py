@@ -303,6 +303,8 @@ def MakeCombinedStats(day,month,y,year,runDay=[],runMonth=[],show=False,savepng=
     plt.figure(figsize=(20,10))
     xRun=np.zeros(len(y))
     x=dayAndMonthToBin(day,month,year)
+    x=np.append(x,365)
+    y=np.append(y,y[-1])
     runX=dayAndMonthToBin(runDay,runMonth,year)
     if year==2017:
         runX=runDay
