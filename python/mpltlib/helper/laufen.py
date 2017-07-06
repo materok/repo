@@ -410,8 +410,8 @@ def MakeCumulPlot(day,distance,year=2016,show=False):
     plt.plot(day,cumulDist,marker="+")
     maxVal=(int(day[-1]/7.)+1)*20
     x1,x2,y1,y2 = plt.axis()
-    plt.axis((x1,x2,0,maxVal+20))
-    plt.axhline(maxVal, color='r')
+    #~ plt.axis((x1,x2,0,maxVal+20))
+    #~ plt.axhline(maxVal, color='r')
     plt.title("gelaufene Strecke")
     plt.xlabel("Nummer des Tag")
     plt.ylabel("Strecke in km")
