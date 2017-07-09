@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
+from math import ceil
 
 def moment(array, mu, sigma, n):
 
@@ -285,7 +286,7 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
     plt.ylabel("bmi")
-    SavePlot(x,year,"stats",savepng)
+    SavePlot(x,year,"stats")
     if show==True: plt.show()
 
     plt.figure(figsize=(10,10))
@@ -348,10 +349,10 @@ def MakeCombinedStats(day,month,y,year,runDay=[],runMonth=[],show=False,savepng=
     xRun16,yRun16,yerr16=prep16Data(gew16,day16)
     plt.figure(figsize=(10,10))
     plt.subplot(111)
-    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=3,label="2017",color="blue")
-    plt.errorbar(day16, gew16, xerr=0.25, yerr=yerr16, fmt='o',zorder=1,label="2016",color="green")
+    plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='^',zorder=3,label="2017",color="blue")
+    plt.errorbar(day16, gew16, xerr=0.25, yerr=yerr16, fmt='v',zorder=1,label="2016",color="green")
     plt.plot(xRun, yRun, 'rs',zorder=4)
-    plt.plot(xRun16, yRun16, 'rs',zorder=2)
+    plt.plot(xRun16, yRun16, 'rs',zorder=2,marker="p",color="yellow")
     plt.xlabel("month")
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
@@ -510,9 +511,98 @@ def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
     else: print "this option is not supported"
     plt.title(adder+"Herzfrequenz")
     plt.xlabel("Nummer des Tag")
-    plt.ylabel(adder+ "Herzfrequenz im bpm")
+    plt.ylabel(adder+ "Herzfrequenz in bpm")
     SavePlot(day,year,adder.split(".")[0]+"bpm")
     if show==True: plt.show()
+
+def MakeDeltaPlots(day,month,weight,year=2016,show=False,savepng=False):
+
+    binNumbers=dayAndMonthToBin(day,month,year)
+    nWeeks=int(ceil(int(binNumbers[-1]/7)))
+    x= np.ones(nWeeks)
+    deltaWeightMinMax = np.ones(nWeeks)
+    deltaWeight0m1 = np.ones(nWeeks)
+    WeightAvg = np.ones(nWeeks)
+    WeightAvgError = np.ones(nWeeks)
+    lastIndex=0
+    for i in range(nWeeks):
+        x[i]=i+1
+        lowBorder=i*7
+        upBorder=(i+1)*7
+        tmpArray=np.array([],'d')
+        while lastIndex<len(binNumbers) and int(binNumbers[lastIndex])>lowBorder and int(binNumbers[lastIndex])<=upBorder:
+            tmpArray=np.append(tmpArray,weight[lastIndex])
+            #~ print binNumbers[lastIndex],lowBorder,upBorder,lastIndex
+            lastIndex+=1
+        deltaWeightMinMax[i]=max(tmpArray)-min(tmpArray)
+        deltaWeight0m1[i]=tmpArray[0]-tmpArray[-1]
+        arrayMean=mean(tmpArray)
+        WeightAvg[i]=arrayMean
+        WeightAvgError[i]=var(tmpArray)
+
+    plt.figure(figsize=(10,10))
+    plt.plot(x,deltaWeightMinMax,linestyle="",marker="x")
+    plt.title("$\Delta$ weight (max-min)")
+    plt.xlabel("Nummer des Tag")
+    plt.ylabel("$\Delta$ weight in kg")
+    SavePlot(binNumbers,year,"deltaweightMinMax",savepng)
+    if show==True: plt.show()
+    plt.figure(figsize=(10,10))
+    plt.plot(x,deltaWeight0m1,linestyle="",marker="x")
+    plt.title("$\Delta$ weight (first minus last day of the week)")
+    plt.xlabel("Nummer des Tag")
+    plt.ylabel("$\Delta$ weight in kg")
+    SavePlot(binNumbers,year,"deltaweightFirstLast",savepng)
+    if show==True: plt.show()
+    plt.figure(figsize=(10,10))
+    plt.plot(x,WeightAvgError,linestyle="",marker="x")
+    plt.title("variance of weight")
+    plt.xlabel("Nummer des Tag")
+    plt.ylabel("weight variance in kg")
+    SavePlot(binNumbers,year,"weightVar",savepng)
+    if show==True: plt.show()
+    plt.figure(figsize=(10,10))
+    plt.errorbar(x,WeightAvg,xerr=0,yerr=WeightAvgError,linestyle="",marker="x")
+    plt.title("average weight")
+    plt.xlabel("Nummer des Tag")
+    plt.ylabel("average weight in kg")
+    SavePlot(binNumbers,year,"avgWeight",savepng)
+    if show==True: plt.show()
+
+def MakeDeltaPlot(day,month,weight,year=2016,show=False,savepng=False):
+
+    x=dayAndMonthToBin(day,month,year)
+    weightDelta = delta(weight)
+    weightDelta = np.append(weightDelta,0)
+    nWeeks=int(ceil(int(x[-1]/7)))
+    weightDeltaRebin = np.zeros(nWeeks)
+    xRebin = np.ones(nWeeks)
+    lastIndex=0
+    for i in range(nWeeks):
+        xRebin[i]=i+1
+        lowBorder=i*7
+        upBorder=(i+1)*7
+        tmpArray=np.array([],'d')
+        while lastIndex<len(x) and int(x[lastIndex])>lowBorder and int(x[lastIndex])<=upBorder:
+            weightDeltaRebin[i]+=weightDelta[lastIndex]
+            lastIndex+=1
+
+    plt.figure(figsize=(10,10))
+    plt.plot(x,weightDelta,linestyle="",marker="x")
+    plt.title("$\Delta$ weight")
+    plt.xlabel("Nummer der Woche")
+    plt.ylabel("$\Delta$ weight in kg")
+    plt.grid(True)
+    SavePlot(x,year,"deltaweight")
+    plt.figure(figsize=(10,10))
+    plt.plot(xRebin,weightDeltaRebin,linestyle="",marker="o")
+    plt.title("$\Delta$ weight")
+    plt.xlabel("Nummer des Tag")
+    plt.ylabel("$\Delta$ weight in kg")
+    plt.grid(True)
+    SavePlot(x,year,"deltaweightRebin",savepng)
+    if show==True: plt.show()
+
 
 def SavePlot(x,year,title,savepng=False,tight=True):
     today=dayToMonth(x[-1],year)

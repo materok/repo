@@ -39,6 +39,8 @@ def main(version=17):
         MakeKMPlots(day,t5,vel5,year)
         MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
         MakeCombinedStats(day17,month17,gew17,year,runDay=day,savepng=True)
+        MakeDeltaPlot(day17,month17,gew17,year,savepng=True)
+        #~ MakeDeltaPlots(day17,month17,gew17,year,savepng=True)
 
 
 if __name__=="__main__":
