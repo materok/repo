@@ -597,7 +597,7 @@ def MakeDeltaPlot(day,month,weight,year=2016,show=False,savepng=False):
     plt.figure(figsize=(10,10))
     plt.plot(xRebin,weightDeltaRebin,linestyle="",marker="o")
     plt.title("$\Delta$ weight")
-    plt.xlabel("Nummer des Tag")
+    plt.xlabel("Nummer der Woche")
     plt.ylabel("$\Delta$ weight in kg")
     plt.grid(True)
     SavePlot(x,year,"deltaweightRebin",savepng)
