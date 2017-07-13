@@ -222,7 +222,7 @@ def MakeStats(x,y,year,runX,height=1.70,height_err=0.01,show=False,savepng=False
     SavePlot(x,year,"stats",savepng)
     if show==True: plt.show()
 
-def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.01,show=False,savepng=False):
+def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.01,show=False,savepng=False,showMin=False):
 
     plt.figure(figsize=(20,10))
     xRun=np.zeros(len(y))
@@ -293,6 +293,8 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     plt.subplot(111)
     plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
     plt.plot(xRun, yRun, 'rs',zorder=5)
+    minIndices=np.where(y == y.min())
+    plt.plot(x[minIndices], y[minIndices], 'h',zorder=6,color="green")
     plt.xlabel("month")
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)

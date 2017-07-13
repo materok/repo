@@ -37,7 +37,7 @@ def main(version=17):
         MakeBPMPlots(day,bpm_max,option="max",year=year)
         MakeCumulPlot(day,km5,year)
         MakeKMPlots(day,t5,vel5,year)
-        MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True)
+        MakeStats17(day17,month17,gew17,year,runDay=day,savepng=True,showMin=True)
         MakeCombinedStats(day17,month17,gew17,year,runDay=day,savepng=True)
         MakeDeltaPlot(day17,month17,gew17,year,savepng=True)
         #~ MakeDeltaPlots(day17,month17,gew17,year,savepng=True)
