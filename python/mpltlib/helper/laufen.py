@@ -641,9 +641,12 @@ def MakeComposition(day,month,fett,wasser,muskel,knochen,year,show=False,savepng
     if show==True: plt.show()
 
 
-def SavePlot(x,year,title,savepng=False,tight=True):
+def SavePlot(x,year,title,savepng=False,tight=True,noAdd=True):
     today=dayToMonth(x[-1],year)
     adder=str(today[0])+"_"+str(today[1])+"_"+str(year)
+    if noAdd:
+        adder=""
+        title=title.replace("_","")
     if tight: plt.tight_layout()
     plt.savefig("../../plots/"+title+adder+".pdf")
     if savepng: plt.savefig("../../plots/"+title+adder+".png")
