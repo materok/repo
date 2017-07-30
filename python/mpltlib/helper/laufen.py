@@ -652,4 +652,4 @@ def SavePlot(x,year,title,savepng=False,tight=True,noAdd=True):
     if savepng: plt.savefig("../../plots/"+title+adder+".png")
 
 if __name__=="__main__":
-    main()
+    pass
