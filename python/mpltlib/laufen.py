@@ -25,8 +25,17 @@ def main(version=17):
         fillEmpty(month)
         day=dayAndMonthToBin(day,month,year)
         gew17,day17,month17= np.genfromtxt('../../stats17.txt',missing_values=",", filling_values = -1, unpack=True)
+        gew17p2,day17p2,month17p2,fett,wasser,muskel,knochen= np.genfromtxt('../../stats17p2.txt',missing_values=",", filling_values = -1, unpack=True)
+        gew17=np.append(gew17,gew17p2)
         gew17/=10.
+        fett/=10.
+        wasser/=10.
+        muskel/=10.
+        knochen/=10.
+        day17=np.append(day17,day17p2)
+        month17=np.append(month17,month17p2)
         fillEmpty(month17)
+        fillEmpty(month17p2)
         #t5,t5min = tConvert(t5)
         vel5=calcVelo(km5,t5/60)
         print vel5
@@ -41,6 +50,7 @@ def main(version=17):
         MakeCombinedStats(day17,month17,gew17,year,runDay=day,savepng=True)
         MakeDeltaPlot(day17,month17,gew17,year,savepng=True)
         #~ MakeDeltaPlots(day17,month17,gew17,year,savepng=True)
+        MakeComposition(day17p2,month17p2,fett,wasser,muskel,knochen,year,savepng=True)
 
 
 if __name__=="__main__":

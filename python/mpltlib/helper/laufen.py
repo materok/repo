@@ -605,6 +605,41 @@ def MakeDeltaPlot(day,month,weight,year=2016,show=False,savepng=False):
     SavePlot(x,year,"deltaweightRebin",savepng)
     if show==True: plt.show()
 
+def MakeComposition(day,month,fett,wasser,muskel,knochen,year,show=False,savepng=True):
+
+    x=dayAndMonthToBin(day,month,year)
+
+    plt.figure(figsize=(10,10))
+    plt.plot(x,fett,linestyle="",marker="x")
+    plt.xlabel("Nummer des Tages")
+    plt.ylabel("Fett in %")
+    SavePlot(x,year,"body1_",savepng)
+    plt.figure(figsize=(10,10))
+    plt.plot(x,wasser,linestyle="",marker="x")
+    plt.xlabel("Nummer des Tages")
+    plt.ylabel("Wasser in %")
+    SavePlot(x,year,"body2_",savepng)
+    plt.figure(figsize=(10,10))
+    plt.plot(x,muskel,linestyle="",marker="x")
+    plt.xlabel("Nummer des Tages")
+    plt.ylabel("Muskel in %")
+    SavePlot(x,year,"body3_",savepng)
+    plt.figure(figsize=(10,10))
+    plt.plot(x,knochen,linestyle="",marker="x")
+    plt.xlabel("Nummer des Tages")
+    plt.ylabel("Knochen in %")
+    SavePlot(x,year,"body4_",savepng)
+    labels = 'Fett', 'Wasser', 'Muskel', 'Knochen'
+    sizes = [fett[-1], wasser[-1], muskel[-1], knochen[-1]]
+    total = sum(sizes)
+    plt.figure(figsize=(10,10))
+    plt.pie(sizes, labels=labels, autopct=lambda(p): '{:.1f}'.format(p * total / 100), startangle=90)
+    SavePlot(x,year,"body5_",savepng)
+    plt.figure(figsize=(10,10))
+    plt.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=90)
+    SavePlot(x,year,"body6_",savepng)
+    if show==True: plt.show()
+
 
 def SavePlot(x,year,title,savepng=False,tight=True):
     today=dayToMonth(x[-1],year)
