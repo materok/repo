@@ -1,0 +1,5 @@
+100 essen 30 7
+200 gehalt 30 ,
+300 einzahlung , ,
+400 gutschrift 31 ,
+400 gutschrift 1 8
