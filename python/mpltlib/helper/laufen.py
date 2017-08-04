@@ -282,6 +282,8 @@ def MakeStats17(day,month,y,year,runDay=[],runMonth=[],height=1.70,height_err=0.
     plt.subplot(122)
     plt.errorbar(x, y_bmi, xerr=0.25, yerr=yerr_bmi, fmt='o')
     plt.plot(xRun, yRun_bmi, 'rs')
+    for i in range(int(min(y_bmi)),int(max(y_bmi))+2):
+        plt.plot((min(x),max(x)),(i,i),  color = 'k')
     plt.xlabel("month")
     plt.xticks(x, labels, rotation='vertical')
     plt.subplots_adjust(bottom=0.175)
