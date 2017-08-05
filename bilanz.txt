@@ -4,3 +4,6 @@
 2.60 Mensa , ,
 15.5 Sneak , ,
 2 Essen 2 ,
+3.5 Mensa 4 ,
+3.57 Essen , ,
+2.94 Trinken , ,
