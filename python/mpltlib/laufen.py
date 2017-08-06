@@ -52,7 +52,6 @@ def main(version=17):
         #~ MakeDeltaPlots(day17,month17,gew17,year,savepng=True)
         MakeComposition(day17p2,month17p2,fett,wasser,muskel,knochen,year,savepng=True)
 
-
 if __name__=="__main__":
     main()
     #main(16)
