@@ -7,3 +7,7 @@
 3.5 Mensa 4 ,
 3.57 Essen , ,
 2.94 Trinken , ,
+0.81 Essen 5 , 
+2.15 Essen 6 ,
+20 Mensa 7 ,
+1.69 Sonstiges , ,
