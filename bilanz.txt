@@ -14,3 +14,6 @@
 17 Sneak 8 ,
 5.11 Essen 10 ,
 2.94 Trinken , ,
+3.90 Essen , , 
+29.90 Schufa , ,
+3.90 Essen , ,
