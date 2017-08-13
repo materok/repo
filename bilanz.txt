@@ -19,3 +19,5 @@
 3.90 Essen , ,
 21.47 Blau , ,
 200.00 Kueche , ,
+7.94 Essen 12 ,
+2.94 Trinken , ,
