@@ -38,8 +38,8 @@ def main(version=17):
         fillEmpty(month17p2)
         #t5,t5min = tConvert(t5)
         vel5=calcVelo(km5,t5/60)
-        print vel5
-        print 60./vel5
+        print(vel5)
+        print(60./vel5)
         MakePercPlot(day,month,year)
         MakeKMHPlot(day,vel5,km5,year,savepng=True)
         MakeBPMPlots(day,bpm,year=year)
@@ -93,15 +93,11 @@ def main(version=17):
                 yerr[i]=var(y[i-5:i])**.5
                 if yerr[i]<0.1:
                     yerr[i]=0.1
-        #~ import subprocess
         from scipy.optimize import curve_fit
         def fit_func(x,a,b):
             return a*x+b
         fitStart=np.where(y == y.max())[0][0]
-        print fitStart
         popt, pcov = curve_fit(fit_func, x[fitStart:], y[fitStart:])
-        print popt
-        print pcov
         plt.figure(figsize=(10,10))
         plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
         minIndices=np.where(y == y.min())

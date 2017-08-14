@@ -99,7 +99,7 @@ def calcVelo(distance,time): #distance and time are arrays
     for entry in time:
         if entry==0:
             entry=1
-            print "entry was 0 and has been set to 1"
+            print("entry was 0 and has been set to 1")
     vel=distance/time
     return vel
 
@@ -129,7 +129,7 @@ def percentage(day,month=[],year=2017): #day is an array
     perc_arr=np.array([],'d')
     if year==2016:
         for run in day:
-            print run
+            print(run)
             n+=1
             perc=n/run*100
             perc_arr=np.append(perc_arr,perc)
@@ -512,7 +512,7 @@ def MakeBPMPlots(day,bpm,option="avg",year=2016,show=False):
         pass
     elif option=="max":
         adder="max. "
-    else: print "this option is not supported"
+    else: print("this option is not supported")
     plt.title(adder+"Herzfrequenz")
     plt.xlabel("Nummer des Tag")
     plt.ylabel(adder+ "Herzfrequenz in bpm")
@@ -536,7 +536,7 @@ def MakeDeltaPlots(day,month,weight,year=2016,show=False,savepng=False):
         tmpArray=np.array([],'d')
         while lastIndex<len(binNumbers) and int(binNumbers[lastIndex])>lowBorder and int(binNumbers[lastIndex])<=upBorder:
             tmpArray=np.append(tmpArray,weight[lastIndex])
-            #~ print binNumbers[lastIndex],lowBorder,upBorder,lastIndex
+            #~ print(binNumbers[lastIndex],lowBorder,upBorder,lastIndex)
             lastIndex+=1
         deltaWeightMinMax[i]=max(tmpArray)-min(tmpArray)
         deltaWeight0m1[i]=tmpArray[0]-tmpArray[-1]
