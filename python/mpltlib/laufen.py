@@ -104,6 +104,10 @@ def main(version=17):
         plt.plot(x[minIndices], y[minIndices], 'h',zorder=6,color="green")
         fitX=np.linspace(fitStart,x.max(),100)
         plt.plot(fitX, fit_func(fitX,*popt), 'h',zorder=6,color="yellow", label='fit')
+
+        from scipy.stats import chisquare
+        print( chisquare(y[fitStart:],fit_func(x[fitStart:],*popt)) )
+
         plt.xlabel("month")
         plt.xticks(x, labels, rotation='vertical')
         plt.subplots_adjust(bottom=0.175)
