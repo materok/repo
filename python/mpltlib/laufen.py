@@ -93,19 +93,21 @@ def main(version=17):
                 yerr[i]=var(y[i-5:i])**.5
                 if yerr[i]<0.1:
                     yerr[i]=0.1
-        import subprocess
+        #~ import subprocess
         from scipy.optimize import curve_fit
         def fit_func(x,a,b):
             return a*x+b
-        fitStart=np.where(y == y.max())
+        fitStart=np.where(y == y.max())[0][0]
         print fitStart
-        popt, pcov = curve_fit(func, x, y)
+        popt, pcov = curve_fit(fit_func, x[fitStart:], y[fitStart:])
         print popt
-        #~ plt.plot(xdata, func(xdata, *popt), 'r-', label='fit')
+        print pcov
         plt.figure(figsize=(10,10))
         plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
         minIndices=np.where(y == y.min())
         plt.plot(x[minIndices], y[minIndices], 'h',zorder=6,color="green")
+        fitX=np.linspace(fitStart,x.max(),100)
+        plt.plot(fitX, fit_func(fitX,*popt), 'h',zorder=6,color="yellow", label='fit')
         plt.xlabel("month")
         plt.xticks(x, labels, rotation='vertical')
         plt.subplots_adjust(bottom=0.175)
