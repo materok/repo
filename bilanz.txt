@@ -21,3 +21,5 @@
 200.00 Kueche , ,
 7.94 Essen 12 ,
 2.94 Trinken , ,
+15.5 Sneak 15 ,
+257.17 Rückmeldung 16 ,
