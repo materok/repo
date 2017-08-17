@@ -23,3 +23,4 @@
 2.94 Trinken , ,
 15.5 Sneak 15 ,
 257.17 Rueckmeldung 16 ,
+8.5 Doktorfeier , ,
