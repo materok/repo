@@ -99,6 +99,10 @@ def CheckFinances(day,month,year,money,use,show=False,savepng=False):
         categorised=categorise(sizesOut[i])
         plt.figure(figsize=(10,10))
         plt.pie(categorised.values(), labels=categorised.keys(),
+                autopct=lambda(p): '{:.1f}'.format(p * totalEx / 100), startangle=90)
+        SavePlot(x3,year,"pieEx"+str(int(i))+"abs_categorised",savepng)
+        plt.figure(figsize=(10,10))
+        plt.pie(categorised.values(), labels=categorised.keys(),
                 autopct="%1.1f%%", startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"rel_categorised",savepng)
 
