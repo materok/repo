@@ -96,6 +96,29 @@ def CheckFinances(day,month,year,money,use,show=False,savepng=False):
         plt.pie(sizesOut[i].values(), labels=sizesOut[i].keys(),
                 autopct="%1.1f%%", startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"rel",savepng)
+        categorised=categorise(sizesOut[i])
+        plt.figure(figsize=(10,10))
+        plt.pie(categorised.values(), labels=categorised.keys(),
+                autopct="%1.1f%%", startangle=90)
+        SavePlot(x3,year,"pieEx"+str(int(i))+"rel_categorised",savepng)
+
+def categorise(dict):
+    categories={}
+    used=[]
+    with open("../../categories.txt") as f:
+        for line in f:
+            line = line.replace("\n","")
+            items = line.split(" ")
+            categories[items[0]]=0
+            for item in items[1:]:
+                categories[items[0]]+=dict[item]
+                if item in used:
+                    print item, " is already in used... this is doublecounting"
+                used.append(item)
+    for item in dict.keys():
+        if item not in used:
+            categories[item]=dict[item]
+    return categories
 
 if __name__=="__main__":
     pass
