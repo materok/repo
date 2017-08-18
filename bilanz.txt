@@ -28,3 +28,6 @@
 2.80 Essen , ,
 3.04 Essen , ,
 0.49 Trinken , ,
+13 Fuehrungszeugnis 18 ,
+4.76 Essen , ,
+2.94 Trinken , ,
