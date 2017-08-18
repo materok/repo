@@ -58,8 +58,7 @@ def dayAndMonthToBin(day,month,year):
     dayDict={}
     if year%4==0:
         monthDict[2]+=1
-
-    for key,val in monthDict.iteritems():
+    for key,val in monthDict.items():
         if key ==1:
             dayDict[key]=0
         else:
@@ -635,7 +634,7 @@ def MakeComposition(day,month,fett,wasser,muskel,knochen,year,show=False,savepng
     sizes = [fett[-1], wasser[-1], muskel[-1], knochen[-1]]
     total = sum(sizes)
     plt.figure(figsize=(10,10))
-    plt.pie(sizes, labels=labels, autopct=lambda(p): '{:.1f}'.format(p * total / 100), startangle=90)
+    plt.pie(sizes, labels=labels, autopct=lambda p: '{:.1f}'.format(p * total / 100), startangle=90)
     SavePlot(x,year,"body5_",savepng)
     plt.figure(figsize=(10,10))
     plt.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=90)

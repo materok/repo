@@ -80,29 +80,29 @@ def CheckFinances(day,month,year,money,use,show=False,savepng=False):
     for i in x3:
         totalIn = sum(sizesIn[i].values())
         plt.figure(figsize=(10,10))
-        plt.pie(sizesIn[i].values(), labels=sizesIn[i].keys(),
-                autopct=lambda(p): '{:.1f}'.format(p * totalIn / 100), startangle=90)
+        plt.pie(list(sizesIn[i].values()), labels=list(sizesIn[i].keys()),
+                autopct=lambda p: '{:.1f}'.format(p * totalIn / 100), startangle=90)
         SavePlot(x3,year,"pieIn"+str(int(i))+"abs",savepng)
         plt.figure(figsize=(10,10))
-        plt.pie(sizesIn[i].values(), labels=sizesIn[i].keys(),
+        plt.pie(list(sizesIn[i].values()), labels=list(sizesIn[i].keys()),
                 autopct="%1.1f%%", startangle=90)
         SavePlot(x3,year,"pieIn"+str(int(i))+"rel",savepng)
         totalEx = sum(sizesOut[i].values())
         plt.figure(figsize=(10,10))
-        plt.pie(sizesOut[i].values(), labels=sizesOut[i].keys(),
-                autopct=lambda(p): '{:.1f}'.format(p * totalEx / 100), startangle=90)
+        plt.pie(list(sizesOut[i].values()), labels=list(sizesOut[i].keys()),
+                autopct=lambda p: '{:.1f}'.format(p * totalEx / 100), startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"abs",savepng)
         plt.figure(figsize=(10,10))
-        plt.pie(sizesOut[i].values(), labels=sizesOut[i].keys(),
+        plt.pie(list(sizesOut[i].values()), labels=list(sizesOut[i].keys()),
                 autopct="%1.1f%%", startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"rel",savepng)
         categorised=categorise(sizesOut[i])
         plt.figure(figsize=(10,10))
-        plt.pie(categorised.values(), labels=categorised.keys(),
-                autopct=lambda(p): '{:.1f}'.format(p * totalEx / 100), startangle=90)
+        plt.pie(list(categorised.values()), labels=list(categorised.keys()),
+                autopct=lambda p: '{:.1f}'.format(p * totalEx / 100), startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"abs_categorised",savepng)
         plt.figure(figsize=(10,10))
-        plt.pie(categorised.values(), labels=categorised.keys(),
+        plt.pie(list(categorised.values()), labels=list(categorised.keys()),
                 autopct="%1.1f%%", startangle=90)
         SavePlot(x3,year,"pieEx"+str(int(i))+"rel_categorised",savepng)
 
@@ -117,10 +117,9 @@ def categorise(dict):
             for item in items[1:]:
                 categories[items[0]]+=dict[item]
                 if item in used:
-                    print item, " is already in used... this is doublecounting"
+                    print( item, " is already in used... this is doublecounting" )
                 used.append(item)
     for item in dict.keys():
-        print "ok"
         if item not in used:
             categories[item]=dict[item]
     return categories
