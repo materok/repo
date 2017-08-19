@@ -31,3 +31,7 @@
 13 Fuehrungszeugnis 18 ,
 4.76 Essen , ,
 2.94 Trinken , ,
+1.96 Trinken 19 ,
+0.79 Trinken , ,
+3.3 Toipa , ,
+1.78 Essen , ,
