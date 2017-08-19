@@ -115,7 +115,8 @@ def categorise(dict):
             items = line.split(" ")
             categories[items[0]]=0
             for item in items[1:]:
-                categories[items[0]]+=dict[item]
+                if item in dict.items():
+                    categories[items[0]]+=dict[item]
                 if item in used:
                     print( item, " is already in used... this is doublecounting" )
                 used.append(item)
