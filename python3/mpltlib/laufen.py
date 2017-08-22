@@ -98,12 +98,13 @@ def main(version=17):
             return a*x+b
         fitStart=np.where(y == y.max())[0][0]
         popt, pcov = curve_fit(fit_func, x[fitStart:], y[fitStart:])
+        print(popt)
         plt.figure(figsize=(10,10))
         plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
         minIndices=np.where(y == y.min())
         plt.plot(x[minIndices], y[minIndices], 'h',zorder=6,color="green")
         fitX=np.linspace(fitStart,x.max(),100)
-        plt.plot(fitX, fit_func(fitX,*popt), 'h',zorder=6,color="yellow", label='fit')
+        plt.plot(fitX, fit_func(fitX,*popt), '',zorder=6,color="yellow", label='fit')
 
         from scipy.stats import chisquare
         print( chisquare(y[fitStart:],fit_func(x[fitStart:],*popt)) )
@@ -112,11 +113,14 @@ def main(version=17):
         plt.xticks(x, labels, rotation='vertical')
         plt.subplots_adjust(bottom=0.175)
         plt.ylabel("weight in kg")#
-        plt.show()
+        #plt.show()
+        plt.tight_layout()
+        plt.savefig("../../plots/singleStatFit.pdf")
+        plt.savefig("../../plots/singleStatFit.png")
 
 
 
 if __name__=="__main__":
     main()
-    #~ main(0)
+    main(0)
     #main(16)
