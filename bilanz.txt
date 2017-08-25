@@ -35,3 +35,5 @@
 0.79 Trinken , ,
 3.3 Toipa , ,
 1.78 Essen , ,
+3.67 Essen 21 ,
+20 Kino 22 ,
