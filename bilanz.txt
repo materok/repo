@@ -48,3 +48,5 @@
 600 Kaution , ,
 4.63 Essen , ,
 1.47 Trinken , ,
+1.49 Essen 29 ,
+0.79 Trinken , ,
