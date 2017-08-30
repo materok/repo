@@ -117,6 +117,6 @@ def main(version=17):
 
 
 if __name__=="__main__":
-    main()
-    #~ main(0)
+    #main()
+    main(0)
     #main(16)
