@@ -37,6 +37,12 @@ def GetSleepTimes(day,month,year,hBed,mBed,hAlarm,mAlarm,hUp,mUp,show=False,save
     plt.ylabel("delay")
     plt.xticks(x, labels, rotation='vertical')
     SavePlot(x,year,"timeDelay",savepng)
+    plt.figure(figsize=(10,10))
+    plt.plot(x, delay+timeUntilAlarm, linestyle="",marker="x")
+    plt.xlabel("month")
+    plt.ylabel("delay")
+    plt.xticks(x, labels, rotation='vertical')
+    SavePlot(x,year,"timeSlept",savepng)
 
 if __name__=="__main__":
     pass

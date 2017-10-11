@@ -15,8 +15,17 @@ def main(version=17):
         t5 =mins+sec/60.
         fillEmpty(month)
         gew17,day17,month17= np.genfromtxt('../../stats17.txt',missing_values=",", filling_values = -1, unpack=True)
+        gew17p2,day17p2,month17p2,fett,wasser,muskel,knochen= np.genfromtxt('../../stats17p2.txt',missing_values=",", filling_values = -1, unpack=True)
+        gew17=np.append(gew17,gew17p2)
         gew17/=10.
+        fett/=10.
+        wasser/=10.
+        muskel/=10.
+        knochen/=10.
+        day17=np.append(day17,day17p2)
+        month17=np.append(month17,month17p2)
         fillEmpty(month17)
+        fillEmpty(month17p2)
         MakeStats17(day17,month17,gew17,2017,show=True)
 
 if __name__=="__main__":

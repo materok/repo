@@ -3,3 +3,4 @@ Leben Trinken Essen Mensa
 Freizeit Sneak
 Sonstige Schreibwaren
 Wohnung Strom Miete
+Wohnungseinrichtung Waeschehaenger Wohnungseinrichtung

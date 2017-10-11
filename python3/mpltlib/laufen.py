@@ -28,6 +28,7 @@ def main(version=17):
         gew17p2,day17p2,month17p2,fett,wasser,muskel,knochen= np.genfromtxt('../../stats17p2.txt',missing_values=",", filling_values = -1, unpack=True)
         gew17=np.append(gew17,gew17p2)
         gew17/=10.
+        print(wasser)
         fett/=10.
         wasser/=10.
         muskel/=10.
@@ -122,5 +123,5 @@ def main(version=17):
 
 if __name__=="__main__":
     main()
-    #~ main(0)
+    main(0)
     #main(16)
