@@ -98,17 +98,18 @@ def main(version=17):
         def fit_func(x,a,b):
             return a*x+b
         fitStart=np.where(y == y.max())[0][0]
-        popt, pcov = curve_fit(fit_func, x[fitStart:], y[fitStart:])
+        fitEnd=np.where(y < 69.5 )[0][0]
+        popt, pcov = curve_fit(fit_func, x[fitStart:fitEnd], y[fitStart:fitEnd])
         print(popt)
         plt.figure(figsize=(10,10))
         plt.errorbar(x, y, xerr=0.25, yerr=yerr, fmt='o',zorder=1)
         minIndices=np.where(y == y.min())
         plt.plot(x[minIndices], y[minIndices], 'h',zorder=6,color="green")
-        fitX=np.linspace(fitStart,x.max(),100)
+        fitX=np.linspace(fitStart,fitEnd,100)
         plt.plot(fitX, fit_func(fitX,*popt), '',zorder=6,color="yellow", label='fit')
 
         from scipy.stats import chisquare
-        print( chisquare(y[fitStart:],fit_func(x[fitStart:],*popt)) )
+        print( chisquare(y[fitStart:fitEnd],fit_func(x[fitStart:fitEnd],*popt)) )
 
         plt.xlabel("month")
         plt.xticks(x, labels, rotation='vertical')
